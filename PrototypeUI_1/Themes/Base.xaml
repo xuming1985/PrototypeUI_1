@@ -15,4 +15,7 @@
     <SolidColorBrush x:Key="FgColor_g" Color="#B6E784" />
     <!--  亮前景色  -->
     <SolidColorBrush x:Key="FgLightColor" Color="DarkOrange" />
+
+    <!--  边框颜色  -->
+    <SolidColorBrush x:Key="BdColor" Color="#4B9CD9" />
 </ResourceDictionary>
