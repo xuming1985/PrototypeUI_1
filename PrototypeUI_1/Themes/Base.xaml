@@ -18,4 +18,12 @@
 
     <!--  边框颜色  -->
     <SolidColorBrush x:Key="BdColor" Color="#4B9CD9" />
+
+    <SolidColorBrush x:Key="ItemSelectedBackground" Color="#404394" />
+    <SolidColorBrush x:Key="ItemSelectedForeground" Color="#0C2B63" />
+    
+    <SolidColorBrush x:Key="ItemMouseOverBackground" Color="Transparent" />
+    <SolidColorBrush x:Key="ItemMouseOverForeground" Color="#0C2B63" />
+ 
+    
 </ResourceDictionary>
