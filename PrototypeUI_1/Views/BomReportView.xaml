@@ -22,11 +22,16 @@
         <Button Grid.Column="2" Margin="30,0,0,0" Style="{StaticResource X_Button_Browser}"  HorizontalAlignment="Left"/>
 
         <Label Grid.Row="1" Style="{StaticResource X_Label_Base}" Margin="30,0,30,0" Content="BOM表输出格式："/>
-        <ComboBox Grid.Row="1" Grid.Column="1" Style="{StaticResource X_ComboBox}"></ComboBox>
+        <ComboBox Grid.Row="1" Grid.Column="1" Style="{StaticResource X_ComboBox}">
+            <ComboBoxItem Content="上海" IsSelected="True"></ComboBoxItem>
+            <ComboBoxItem Content="北京" ></ComboBoxItem>
+            <ComboBoxItem Content="天津" ></ComboBoxItem>
+            <ComboBoxItem Content="广州" ></ComboBoxItem>
+        </ComboBox>
 
         <Grid Grid.Row="2" Grid.Column="2">
-            <Button Style="{StaticResource X_Button}" Content="输出" HorizontalAlignment="Left"></Button>
-            <Button Style="{StaticResource X_Button_g}" Content="取消" HorizontalAlignment="Left" Margin="180,0,0,0"></Button>
+            <Button Style="{StaticResource X_Button}" Width="120" Content="输出" HorizontalAlignment="Left"></Button>
+            <Button Style="{StaticResource X_Button_g}" Width="120" Content="取消" HorizontalAlignment="Left" Margin="150,0,0,0"></Button>
         </Grid>
        
     </Grid>

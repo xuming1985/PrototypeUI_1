@@ -6,12 +6,13 @@
     <Style x:Key="X_TextBox" TargetType="TextBox">
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-        <Setter Property="FontSize" Value="18"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Height" Value="30"/>
+        <Setter Property="FontSize" Value="{StaticResource TextSize}"/>
+        <Setter Property="Height" Value="{StaticResource ElementHeight}"/>
         <Setter Property="BorderBrush" Value="{StaticResource BdColor}"/>
         <Setter Property="Foreground" Value="{StaticResource FgColor}"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="CaretBrush" Value="{StaticResource FgColor}"/>
     </Style>
 </ResourceDictionary>
