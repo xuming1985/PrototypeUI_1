@@ -3,14 +3,40 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:PrototypeUI_1.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="Paragraph.FontSize" Value="18" />
+            <Setter Property="Paragraph.FontWeight" Value="Bold" />
+            <Setter Property="Paragraph.Foreground" Value="{StaticResource FgColor}" />
+        </Style>
+    </UserControl.Resources>
     <Grid>
-        <Border Margin="5" BorderThickness="1" BorderBrush="{StaticResource BdColor}"></Border>
-        
-        <Grid>
-            <TextBlock VerticalAlignment="Center" Text="被软件作品的著作权属于山东大学材料科科学与工程学院所有 \r\n a "/>
+        <Grid Margin="75" Width="750" Height="398">
+            <Grid.Background>
+                <ImageBrush ImageSource="/PrototypeUI_1;component/Images/background_h1.png"/>
+            </Grid.Background>
+            <Grid HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="1">本软件作品的著作权属于山东大学材料科科学与工程学院所有,受《中华人民共和国著</Label>
+                <Label Grid.Row="2">作权法》 , 《计算机软件保护条例》, 《知识产权保护条例》和相关国际版权系约,法</Label>
+                <Label Grid.Row="3">律法规,以及其他知识产权法律和条约保护。</Label>
+                <Label Grid.Row="5">任何单位和个人禾经山东大学材料科科学与工程学院书面授权,不得以任何目的(包括</Label>
+                <Label Grid.Row="6">但不限于学习,研究等非商业用途)修改、使用、负责、截取、翻译、上传,下载等或</Label>
+                <Label Grid.Row="7">以任何方式和媒介复制,转载和传播本软件作品的任何部分,否则将视为侵权,山东大</Label>
+                <Label Grid.Row="8">学材料科学与工程学院保留依法追究其法律责任的权利。</Label>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

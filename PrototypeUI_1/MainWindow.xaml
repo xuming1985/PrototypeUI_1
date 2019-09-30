@@ -4,168 +4,88 @@
         xmlns:vm="clr-namespace:PrototypeUI_1.ViewModels"
         xmlns:v="clr-namespace:PrototypeUI_1.Views"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        Title="主页" Height="1080" Width="1920" WindowState="Maximized"
-        DataContext="{Binding Source={StaticResource Locator}, Path = Main}">
+        Title="跟踪剪切主机参数化设计软件" WindowStyle="ToolWindow" Width="1200" Height="750"
+        DataContext="{Binding Source={StaticResource Locator}, Path = Main}" WindowStartupLocation="CenterScreen">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/PrototypeUI_1;component/Images/background.jpg"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid>
-            <Image Source="Images/header.png" />
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Color="#14236E" Offset="0"/>
+                    <GradientStop Color="#101344" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Image Source="Images/header_2x.png" Margin="20,50,20,0"/>
+            <Label Content="跟踪剪切主机参数化设计软件" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,14" FontSize="24" FontWeight="Bold" Foreground="{StaticResource FgColor}"/>
         </Grid>
         <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="300"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid Background="{StaticResource ThemeColor}">
-                <TreeView x:Name="Tree" ItemsSource="{Binding TreeNodeModels}" Style="{StaticResource X_TreeView}" ItemContainerStyle="{StaticResource X_TreeViewItem}">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="SelectedItemChanged">
-                            <i:InvokeCommandAction Command="{Binding NavigateCommand}" CommandParameter="{Binding ElementName=Tree, Path=SelectedItem}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </TreeView>
-                
-                <!--<TreeView x:Name="treeView_Set" Style="{StaticResource X_TreeView}">
-                    <TreeViewItem Header="系统设置" Style="{StaticResource X_TreeViewItem}">
-                        <TreeViewItem Header="密码修改"  Style="{StaticResource X_TreeViewItem}">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseLeftButtonUp">
-                                    <i:InvokeCommandAction Command="{Binding NavigateCommand}" CommandParameter="PasswordUpdateViewModel"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </TreeViewItem>
-                        <TreeViewItem Header="新建用户"  Style="{StaticResource X_TreeViewItem}">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseLeftButtonUp">
-                                    <i:InvokeCommandAction Command="{Binding NavigateCommand}" CommandParameter="UserAddViewModel"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </TreeViewItem>
-                        <TreeViewItem Header="修改用户"  Style="{StaticResource X_TreeViewItem}">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseLeftButtonUp">
-                                    <i:InvokeCommandAction Command="{Binding NavigateCommand}" CommandParameter="UserUpdateViewModel"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </TreeViewItem>
-                        <TreeViewItem Header="删除用户"  Style="{StaticResource X_TreeViewItem}">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseLeftButtonUp">
-                                    <i:InvokeCommandAction Command="{Binding NavigateCommand}" CommandParameter="UserDeleteViewModel"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </TreeViewItem>
-                    </TreeViewItem>
-                    <TreeViewItem Header="设计输入" >
+            <Grid x:Name="MainView">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="900"/>
+                </Grid.ColumnDefinitions>
+                <Grid Background="{StaticResource ThemeColor}">
+                    <TreeView x:Name="Tree" ItemsSource="{Binding TreeNodeModels}" Style="{StaticResource X_TreeView}" ItemContainerStyle="{StaticResource X_TreeViewItem}">
                         <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseLeftButtonUp">
-                                <i:InvokeCommandAction Command="{Binding NavigateCommand}" CommandParameter="DesignInputViewModel"/>
+                            <i:EventTrigger EventName="SelectedItemChanged">
+                                <i:InvokeCommandAction Command="{Binding NavigateCommand}" CommandParameter="{Binding ElementName=Tree, Path=SelectedItem}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
-                    </TreeViewItem>
-                    <TreeViewItem Header="设计预览" >
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseLeftButtonUp">
-                                <i:InvokeCommandAction Command="{Binding NavigateCommand}" CommandParameter="DesignPreViewModel"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </TreeViewItem>
-                    <TreeViewItem Header="设计输出" >
-                        <TreeViewItem Header="工程图输出" >
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseLeftButtonUp">
-                                    <i:InvokeCommandAction Command="{Binding NavigateCommand}" CommandParameter="DrawingOutputViewModel"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </TreeViewItem>
-                        <TreeViewItem Header="BOM报表" >
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseLeftButtonUp">
-                                    <i:InvokeCommandAction Command="{Binding NavigateCommand}" CommandParameter="BomReportViewModel"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </TreeViewItem>
-                    </TreeViewItem>
-                    <TreeViewItem Header="数据管理" >
-                        <TreeViewItem Header="零部件管理" >
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseLeftButtonUp">
-                                    <i:InvokeCommandAction Command="{Binding NavigateCommand}" CommandParameter="PartComponentMgmtViewModel"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </TreeViewItem>
-                        <TreeViewItem Header="标准件管理" >
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseLeftButtonUp">
-                                    <i:InvokeCommandAction Command="{Binding NavigateCommand}" CommandParameter="StandardComponentMgmtViewModel"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </TreeViewItem>
-                    </TreeViewItem>
-                    <TreeViewItem Header="帮助" >
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseLeftButtonUp">
-                                <i:InvokeCommandAction Command="{Binding NavigateCommand}" CommandParameter="HelpViewModel"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </TreeViewItem>
-                    <TreeViewItem Header="关于" >
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseLeftButtonUp">
-                                <i:InvokeCommandAction Command="{Binding NavigateCommand}" CommandParameter="AboutViewModel"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </TreeViewItem>
-                </TreeView>-->
+                    </TreeView>
+                </Grid>
+                <Grid Grid.Column="1" Margin="0,-1,0,0">
+                    <ContentControl Content="{Binding CurrentViewModel }">
+                        <ContentControl.Resources>
+                            <DataTemplate DataType="{x:Type vm:PasswordUpdateViewModel}">
+                                <v:PasswordUpdateView/>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:UserAddViewModel}">
+                                <v:UserAddView/>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:UserUpdateViewModel}">
+                                <v:UserUpdateView/>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:UserDeleteViewModel}">
+                                <v:UserDeleteView/>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:DesignInputViewModel}">
+                                <v:DesignInputView/>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:DesignPreViewModel}">
+                                <v:DesignPreView/>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:DrawingOutputViewModel}">
+                                <v:DrawingOutputView/>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:BomReportViewModel}">
+                                <v:BomReportView/>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:StandardComponentMgmtViewModel}">
+                                <v:StandardComponentMgmtView/>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:PartComponentMgmtViewModel}">
+                                <v:PartComponentMgmtView/>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:AboutViewModel}">
+                                <v:AboutView/>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:HelpViewModel}">
+                                <v:HelpView/>
+                            </DataTemplate>
+                        </ContentControl.Resources>
+                    </ContentControl>
+                </Grid>
             </Grid>
-            <Grid Grid.Column="1" Margin="0,-1,0,0">
-                <Grid.Background>
-                    <ImageBrush ImageSource="Images/bg.png" Stretch="UniformToFill"/>
-                </Grid.Background>
-                <ContentControl Content="{Binding CurrentViewModel }">
-                    <ContentControl.Resources>
-                        <DataTemplate DataType="{x:Type vm:PasswordUpdateViewModel}">
-                            <v:PasswordUpdateView/>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type vm:UserAddViewModel}">
-                            <v:UserAddView/>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type vm:UserUpdateViewModel}">
-                            <v:UserUpdateView/>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type vm:UserDeleteViewModel}">
-                            <v:UserDeleteView/>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type vm:DesignInputViewModel}">
-                            <v:DesignInputView/>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type vm:DesignPreViewModel}">
-                            <v:DesignPreView/>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type vm:DrawingOutputViewModel}">
-                            <v:DrawingOutputView/>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type vm:BomReportViewModel}">
-                            <v:BomReportView/>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type vm:StandardComponentMgmtViewModel}">
-                            <v:StandardComponentMgmtView/>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type vm:PartComponentMgmtViewModel}">
-                            <v:PartComponentMgmtView/>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type vm:AboutViewModel}">
-                            <v:AboutView/>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type vm:HelpViewModel}">
-                            <v:HelpView/>
-                        </DataTemplate>
-                    </ContentControl.Resources>
-                </ContentControl>
-            </Grid>
+            
+            <v:LoginView x:Name="LoginView"/>
         </Grid>
+
+        
     </Grid>
 </Window>

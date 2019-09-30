@@ -2,23 +2,22 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:PrototypeUI_1.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="800">
-    <Grid>
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" >
+    <Grid Margin="75" Width="750">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
-        <ListView Margin="10" Background="Transparent" BorderThickness="1" BorderBrush="GreenYellow">
+        <ListView Background="Transparent" BorderThickness="1" BorderBrush="#B8E986">
 
         </ListView>
-        <Grid Grid.Column="1">
+        <Border Grid.Column="2" BorderThickness="1" BorderBrush="{StaticResource BdColor}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="70"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="80"/>
@@ -31,29 +30,29 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Label Style="{StaticResource X_Label_Base}" Margin="20,0,10,0" Content="图号："/>
+                <Label Style="{StaticResource X_Label_Base}" Margin="20,0,0,0" Content="图号："/>
                 <TextBox Grid.Column="1" Style="{StaticResource X_TextBox}"/>
 
-                <Label Grid.Row="1" Style="{StaticResource X_Label_Base}" Margin="20,0,10,0" Content="名称："/>
+                <Label Grid.Row="1" Style="{StaticResource X_Label_Base}" Margin="20,0,0,0" Content="名称："/>
                 <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource X_TextBox}"/>
 
-                <Label Grid.Row="2" Style="{StaticResource X_Label_Base}" Margin="20,0,10,0" Content="材料："/>
+                <Label Grid.Row="2" Style="{StaticResource X_Label_Base}" Margin="20,0,0,0" Content="材料："/>
                 <TextBox Grid.Row="2" Grid.Column="1" Style="{StaticResource X_TextBox}"/>
 
-                <Label Grid.Row="3" Style="{StaticResource X_Label_Base}" Margin="20,0,10,0" Content="单重："/>
+                <Label Grid.Row="3" Style="{StaticResource X_Label_Base}" Margin="20,0,0,0" Content="单重："/>
                 <TextBox Grid.Row="3" Grid.Column="1" Style="{StaticResource X_TextBox}"/>
 
-                <Label Grid.Row="4" Style="{StaticResource X_Label_Base}" Margin="20,0,10,0" Content="类型："/>
+                <Label Grid.Row="4" Style="{StaticResource X_Label_Base}" Margin="20,0,0,0" Content="类型："/>
                 <TextBox Grid.Row="4" Grid.Column="1" Style="{StaticResource X_TextBox}"/>
 
-                <Label Grid.Row="5" Style="{StaticResource X_Label_Base}" Margin="20,0,10,0" Content="设计者："/>
+                <Label Grid.Row="5" Style="{StaticResource X_Label_Base}" Margin="20,0,0,0" Content="设计者："/>
                 <TextBox Grid.Row="5" Grid.Column="1" Style="{StaticResource X_TextBox}"/>
 
-                <Label Grid.Row="6" Style="{StaticResource X_Label_Base}" Margin="20,0,10,0" Content="设计时间："/>
+                <Label Grid.Row="6" Style="{StaticResource X_Label_Base}" Margin="20,0,0,0" Content="设计时间："/>
                 <TextBox Grid.Row="6" Grid.Column="1" Style="{StaticResource X_TextBox}"/>
 
-                <Button Grid.Row="7" Grid.Column="2" Margin="0,20,0,0" Style="{StaticResource X_Button}" Content="输出" HorizontalAlignment="Left"></Button>
+                <Button Grid.Row="7" Grid.Column="1" Margin="0,10,0,10" Style="{StaticResource X_Button}" Content="删除选中产品"/>
             </Grid>
-        </Grid>
+        </Border>
     </Grid>
 </UserControl>

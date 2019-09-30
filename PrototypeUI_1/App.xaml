@@ -20,6 +20,8 @@
                 </ResourceDictionary>
                 <ResourceDictionary Source="Themes/TreeView.xaml">
                 </ResourceDictionary>
+                <ResourceDictionary Source="Themes/ProgressBar.xaml">
+                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
             <viewmodels:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
         </ResourceDictionary>

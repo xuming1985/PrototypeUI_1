@@ -10,8 +10,22 @@ namespace PrototypeUI_1.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+        private bool _isLogin;
         private PartViewModel _currentViewModel;
         private List<PartViewModel> _viewModels { get; set; }
+
+        public bool Islogin
+        {
+            get { return _isLogin; }
+            set
+            {
+                if (_isLogin != value)
+                {
+                    _isLogin = value;
+                    RaisePropertyChanged("Islogin");
+                }
+            }
+        }
 
         public PartViewModel CurrentViewModel
         {
@@ -53,7 +67,7 @@ namespace PrototypeUI_1.ViewModels
                 new TreeNodeModel()
                 {
                     Name = "系统设置",
-                    ImagePath = AppDomain.CurrentDomain.BaseDirectory+ "Images/set.png",
+                    ImagePath = AppDomain.CurrentDomain.BaseDirectory+ "Images/setting.png",
                     Children = new List<TreeNodeModel>()
                     {
                         new TreeNodeModel(){Name="密码修改",Tag = "PasswordUpdateViewModel"},
@@ -66,18 +80,18 @@ namespace PrototypeUI_1.ViewModels
                 {
                     Name = "设计输入",
                     Tag = "DesignInputViewModel",
-                    ImagePath = AppDomain.CurrentDomain.BaseDirectory+ "Images/set.png"
+                    ImagePath = AppDomain.CurrentDomain.BaseDirectory+ "Images/input.png"
                 },
                 new TreeNodeModel()
                 {
                     Name = "设计预览",
                     Tag = "DesignPreViewModel",
-                    ImagePath = AppDomain.CurrentDomain.BaseDirectory+ "Images/set.png"
+                    ImagePath = AppDomain.CurrentDomain.BaseDirectory+ "Images/preview.png"
                 },
                 new TreeNodeModel()
                 {
                     Name = "设计输出",
-                    ImagePath = AppDomain.CurrentDomain.BaseDirectory+ "Images/set.png",
+                    ImagePath = AppDomain.CurrentDomain.BaseDirectory+ "Images/output.png",
                     Children = new List<TreeNodeModel>()
                     {
                         new TreeNodeModel(){Name="工程图输出",Tag = "DrawingOutputViewModel"},
@@ -87,7 +101,7 @@ namespace PrototypeUI_1.ViewModels
                 new TreeNodeModel()
                 {
                     Name = "数据管理",
-                    ImagePath = AppDomain.CurrentDomain.BaseDirectory+ "Images/set.png",
+                    ImagePath = AppDomain.CurrentDomain.BaseDirectory+ "Images/data.png",
                     Children = new List<TreeNodeModel>()
                     {
                         new TreeNodeModel(){Name="零部件管理",Tag = "PartComponentMgmtViewModel"},
@@ -98,13 +112,13 @@ namespace PrototypeUI_1.ViewModels
                 {
                     Name = "帮助",
                     Tag = "HelpViewModel",
-                    ImagePath = AppDomain.CurrentDomain.BaseDirectory+ "Images/set.png"
+                    ImagePath = AppDomain.CurrentDomain.BaseDirectory+ "Images/help.png"
                 },
                 new TreeNodeModel()
                 {
                     Name = "关于",
                     Tag = "AboutViewModel",
-                    ImagePath = AppDomain.CurrentDomain.BaseDirectory+ "Images/set.png"
+                    ImagePath = AppDomain.CurrentDomain.BaseDirectory+ "Images/about.png"
                 }
             };
         }

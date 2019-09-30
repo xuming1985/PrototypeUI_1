@@ -2,9 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
-    <sys:Int32 x:Key="TextSize">18</sys:Int32>
-    <sys:Int32 x:Key="ElementHeight">30</sys:Int32>
-
     <!--  全白 透明色  -->
     <SolidColorBrush x:Key="TransparentColor" Color="#00FFFFFF" />
     <!--  全黑 透明色  -->
@@ -19,9 +16,9 @@
     <SolidColorBrush x:Key="ThemeBackground" Color="Transparent"/>
 
     <!--  前景色  -->
-    <SolidColorBrush x:Key="FgColor" Color="#4B9CD9" />
+    <SolidColorBrush x:Key="FgColor" Color="#5ABEFF" />
     <SolidColorBrush x:Key="FgColor_g" Color="#B6E784" />
-    <SolidColorBrush x:Key="TextForeground" Color="#4B9CD9" />
+    <SolidColorBrush x:Key="TextForeground" Color="#5ABEFF" />
 
     <!--  亮前景色  -->
     <SolidColorBrush x:Key="FgLightColor" Color="DarkOrange" />

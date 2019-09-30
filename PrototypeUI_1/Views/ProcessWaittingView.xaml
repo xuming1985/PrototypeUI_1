@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="PrototypeUI_1.Views.ProcessWaittingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d">
+    <Grid>
+        <Border Background="Black" Opacity="0.2"/>
+        <Grid Width="563" Height="280">
+            <Grid.Background>
+                <ImageBrush ImageSource="/PrototypeUI_1;component/Images/background_h3.png"/>
+            </Grid.Background>
+            <ProgressBar Value="48" VerticalAlignment="Top" Margin="12,100,10,0"/>
+            <TextBlock Text="48%" VerticalAlignment="Top" Margin="12,140,10,0" HorizontalAlignment="Center" Height="40" FontSize="28" FontWeight="Bold" Foreground="{StaticResource FgColor}"/>
+            <Button Margin="192,170,192,0" Style="{StaticResource X_Button_g}"  Content="完成零部件生成"/>
+        </Grid>
+    </Grid>
+</UserControl>

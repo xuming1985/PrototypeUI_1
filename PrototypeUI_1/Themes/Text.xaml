@@ -9,10 +9,10 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="FontSize" Value="{StaticResource TextSize}"/>
-        <Setter Property="Height" Value="{StaticResource ElementHeight}"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="Height" Value="34"/>
         <Setter Property="BorderBrush" Value="{StaticResource BdColor}"/>
-        <Setter Property="Foreground" Value="{StaticResource FgColor}"/>
-        <Setter Property="CaretBrush" Value="{StaticResource FgColor}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextForeground}"/>
+        <Setter Property="CaretBrush" Value="{StaticResource TextForeground}"/>
     </Style>
 </ResourceDictionary>

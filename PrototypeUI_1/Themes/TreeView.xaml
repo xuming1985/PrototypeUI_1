@@ -6,6 +6,7 @@
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
         <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
         <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="True"/>
         <Setter Property="VirtualizingStackPanel.VirtualizationMode" Value="Recycling" />
@@ -20,14 +21,16 @@
         <Setter Property="ItemTemplate">
             <Setter.Value>
                 <HierarchicalDataTemplate ItemsSource="{Binding Children}">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="60" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Image Source="{Binding ImagePath}" Margin="5"/>
-                        <TextBlock Grid.Column="1" Text="{Binding Name}" Foreground="{StaticResource FgColor}" FontSize="20" VerticalAlignment="Center"/>
-                    </Grid>
+                    <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource BdColor}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding ImagePath}" Margin="10"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Name}" Foreground="{StaticResource FgColor}" FontSize="20" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
                 </HierarchicalDataTemplate>
             </Setter.Value>
         </Setter>
@@ -48,10 +51,12 @@
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
-                                    <ColumnDefinition MinWidth="18" Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
+                                <!--内容-->
+                                <ContentPresenter x:Name="PART_Header" ContentSource="Header"/>
                                 <!--展开收缩按钮-->
-                                <ToggleButton x:Name="ExpanderBtn" Grid.Column="1"
+                                <ToggleButton x:Name="ExpanderBtn" Grid.Column="1" Margin="-60,0,0,0"
                                               IsChecked="{Binding Path=IsExpanded, RelativeSource={x:Static RelativeSource.TemplatedParent}, Mode=TwoWay}"
                                               ClickMode="Press" >
                                     <ToggleButton.Template>
@@ -67,8 +72,6 @@
                                         </Border>
                                     </ToggleButton.Content>
                                 </ToggleButton>
-                                <!--内容-->
-                                <ContentPresenter x:Name="PART_Header" ContentSource="Header"/>
                             </Grid>
                         </Border>
                         <ItemsPresenter Margin="0,0,0,0" x:Name="ItemsHost"/>
