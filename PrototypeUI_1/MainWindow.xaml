@@ -83,7 +83,8 @@
                 </Grid>
             </Grid>
             
-            <v:LoginView x:Name="LoginView"/>
+            <v:LoginView />
+
         </Grid>
 
         
