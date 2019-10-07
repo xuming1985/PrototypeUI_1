@@ -43,17 +43,14 @@
     </Reference>
     <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=0e453835af4ee6ce, processorArchitecture=MSIL">
       <HintPath>packages\MvvmLightLibs.5.4.1.1\lib\net40\GalaSoft.MvvmLight.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.4.1.0, Culture=neutral, PublicKeyToken=f46ff315b1088208, processorArchitecture=MSIL">
       <HintPath>packages\MvvmLightLibs.5.4.1.1\lib\net40\GalaSoft.MvvmLight.Extras.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\MvvmLightLibs.5.4.1.1\lib\net40\System.Windows.Interactivity.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -72,69 +69,77 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\AccountModel.cs" />
-    <Compile Include="Models\TreeNodeModel.cs" />
-    <Compile Include="ViewModels\UserDeleteViewModel.cs" />
-    <Compile Include="ViewModels\UserUpdateViewModel.cs" />
-    <Compile Include="ViewModels\UserAddViewModel.cs" />
-    <Compile Include="ViewModels\PasswordUpdateViewModel.cs" />
-    <Compile Include="ViewModels\PartComponentMgmtViewModel.cs" />
-    <Compile Include="ViewModels\StandardComponentMgmtViewModel.cs" />
-    <Compile Include="ViewModels\BomReportViewModel.cs" />
-    <Compile Include="ViewModels\DrawingOutputViewModel.cs" />
-    <Compile Include="ViewModels\DesignInputViewModel.cs" />
-    <Compile Include="ViewModels\DesignPreViewModel.cs" />
-    <Compile Include="ViewModels\HelpViewModel.cs" />
-    <Compile Include="ViewModels\AboutViewModel.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\PartViewModel.cs" />
-    <Compile Include="ViewModels\ViewModelLocator.cs" />
-    <Compile Include="Views\AutoAssembleView.xaml.cs">
+    <Compile Include="Converter\VisibilityConverter.cs" />
+    <Compile Include="Core\Utils.cs" />
+    <Compile Include="Model\AccountModel.cs" />
+    <Compile Include="Model\TreeNodeModel.cs" />
+    <Compile Include="ViewModel\AlertViewModel.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\PopViewModel.cs" />
+    <Compile Include="ViewModel\UserDeleteViewModel.cs" />
+    <Compile Include="ViewModel\UserUpdateViewModel.cs" />
+    <Compile Include="ViewModel\UserAddViewModel.cs" />
+    <Compile Include="ViewModel\PasswordUpdateViewModel.cs" />
+    <Compile Include="ViewModel\PartComponentMgmtViewModel.cs" />
+    <Compile Include="ViewModel\StandardComponentMgmtViewModel.cs" />
+    <Compile Include="ViewModel\BomReportViewModel.cs" />
+    <Compile Include="ViewModel\DrawingOutputViewModel.cs" />
+    <Compile Include="ViewModel\DesignInputViewModel.cs" />
+    <Compile Include="ViewModel\DesignPreViewModel.cs" />
+    <Compile Include="ViewModel\HelpViewModel.cs" />
+    <Compile Include="ViewModel\AboutViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\PartViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\AutoAssembleView.xaml.cs">
       <DependentUpon>AutoAssembleView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ConfirmView.xaml.cs">
+    <Compile Include="View\AlertView.xaml.cs">
+      <DependentUpon>AlertView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ConfirmView.xaml.cs">
       <DependentUpon>ConfirmView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\HelpView.xaml.cs">
+    <Compile Include="View\HelpView.xaml.cs">
       <DependentUpon>HelpView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AboutView.xaml.cs">
+    <Compile Include="View\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\BomReportView.xaml.cs">
+    <Compile Include="View\BomReportView.xaml.cs">
       <DependentUpon>BomReportView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DesignInputView.xaml.cs">
+    <Compile Include="View\DesignInputView.xaml.cs">
       <DependentUpon>DesignInputView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DesignPreView.xaml.cs">
+    <Compile Include="View\DesignPreView.xaml.cs">
       <DependentUpon>DesignPreView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DrawingOutputView.xaml.cs">
+    <Compile Include="View\DrawingOutputView.xaml.cs">
       <DependentUpon>DrawingOutputView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\LoginView.xaml.cs">
+    <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PartComponentMgmtView.xaml.cs">
+    <Compile Include="View\PartComponentMgmtView.xaml.cs">
       <DependentUpon>PartComponentMgmtView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PasswordUpdateView.xaml.cs">
+    <Compile Include="View\PasswordUpdateView.xaml.cs">
       <DependentUpon>PasswordUpdateView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProcessWaittingView.xaml.cs">
+    <Compile Include="View\ProcessWaittingView.xaml.cs">
       <DependentUpon>ProcessWaittingView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\StandardComponentMgmtView.xaml.cs">
+    <Compile Include="View\StandardComponentMgmtView.xaml.cs">
       <DependentUpon>StandardComponentMgmtView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserAddView.xaml.cs">
+    <Compile Include="View\UserAddView.xaml.cs">
       <DependentUpon>UserAddView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserDeleteView.xaml.cs">
+    <Compile Include="View\UserDeleteView.xaml.cs">
       <DependentUpon>UserDeleteView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserUpdateView.xaml.cs">
+    <Compile Include="View\UserUpdateView.xaml.cs">
       <DependentUpon>UserUpdateView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -154,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\ComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DataGrid.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -177,67 +186,71 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\AutoAssembleView.xaml">
+    <Page Include="View\AutoAssembleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ConfirmView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\HelpView.xaml">
+    <Page Include="View\AlertView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\AboutView.xaml">
+    <Page Include="View\ConfirmView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\BomReportView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\DesignInputView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\DesignPreView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\DrawingOutputView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\LoginView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\PartComponentMgmtView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\PasswordUpdateView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ProcessWaittingView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\StandardComponentMgmtView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserAddView.xaml">
+    <Page Include="View\HelpView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\UserDeleteView.xaml">
+    <Page Include="View\AboutView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserUpdateView.xaml">
+    <Page Include="View\BomReportView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DesignInputView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DesignPreView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DrawingOutputView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PartComponentMgmtView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PasswordUpdateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProcessWaittingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StandardComponentMgmtView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserAddView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UserDeleteView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserUpdateView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -266,7 +279,12 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\PrototypeService\PrototypeService.csproj">
+      <Project>{3252d9cc-20f5-464e-b3e8-4a950d6faf40}</Project>
+      <Name>PrototypeService</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Images\background.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -315,9 +333,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\background_v3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\background_v3_2x.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\data.png">

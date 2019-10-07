@@ -21,14 +21,14 @@
         <Setter Property="ItemTemplate">
             <Setter.Value>
                 <HierarchicalDataTemplate ItemsSource="{Binding Children}">
-                    <Border BorderThickness="0,1,0,0" BorderBrush="{StaticResource BdColor}">
+                    <Border BorderThickness="{Binding Thickness}" BorderBrush="{StaticResource BdColor}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="60" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Image Source="{Binding ImagePath}" Margin="10"/>
-                            <TextBlock Grid.Column="1" Text="{Binding Name}" Foreground="{StaticResource FgColor}" FontSize="20" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Name}" Foreground="{StaticResource FgColor}" FontSize="{Binding FontSize}" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
                 </HierarchicalDataTemplate>
@@ -51,23 +51,23 @@
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="0" />
                                 </Grid.ColumnDefinitions>
                                 <!--内容-->
                                 <ContentPresenter x:Name="PART_Header" ContentSource="Header"/>
                                 <!--展开收缩按钮-->
-                                <ToggleButton x:Name="ExpanderBtn" Grid.Column="1" Margin="-60,0,0,0"
+                                <ToggleButton x:Name="ExpanderBtn" Grid.Column="0" Margin="0,0,20,0"
                                               IsChecked="{Binding Path=IsExpanded, RelativeSource={x:Static RelativeSource.TemplatedParent}, Mode=TwoWay}"
                                               ClickMode="Press" >
                                     <ToggleButton.Template>
                                         <ControlTemplate TargetType="ToggleButton">
                                             <Border Background="Transparent">
-                                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Right" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                                             </Border>
                                         </ControlTemplate>
                                     </ToggleButton.Template>
                                     <ToggleButton.Content>
-                                        <Border Width="60">
+                                        <Border>
                                             <Polyline x:Name="ExpanderIcon" Stroke="{TemplateBinding Foreground}" StrokeThickness="2" Points="10,0 20,10 10,20"/>
                                         </Border>
                                     </ToggleButton.Content>
@@ -81,10 +81,10 @@
                             <Setter TargetName="ItemsHost" Property="Visibility" Value="Collapsed" />
                         </Trigger>
                         <Trigger Property="IsExpanded" Value="True">
-                            <Setter TargetName="ExpanderIcon" Property="Points" Value="0,10 10,20 20,10" />
+                            <Setter TargetName="ExpanderIcon" Property="Points" Value="0,5 10,15 20,5" />
                         </Trigger>
                         <Trigger Property="HasItems" Value="False">
-                            <Setter TargetName="ExpanderIcon" Property="Visibility" Value="Hidden" />
+                            <Setter TargetName="ExpanderBtn" Property="Visibility" Value="Hidden" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" Value="{StaticResource ItemMouseOverBackground}" />

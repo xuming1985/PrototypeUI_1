@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="PrototypeUI_1.View.StandardComponentMgmtView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Width="750">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <ListView Background="Transparent" BorderThickness="1" BorderBrush="#B8E986">
+
+        </ListView>
+        <Border Grid.Column="2" BorderThickness="1" BorderBrush="{StaticResource BdColor}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="70"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Style="{StaticResource X_Label_Base}" Margin="20,0,0,0" Content="代号："/>
+                <TextBox Grid.Column="1" Style="{StaticResource X_TextBox}"/>
+
+                <Label Grid.Row="1" Style="{StaticResource X_Label_Base}" Margin="20,0,0,0" Content="名称："/>
+                <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource X_TextBox}"/>
+
+                <Label Grid.Row="2" Style="{StaticResource X_Label_Base}" Margin="20,0,0,0" Content="规格："/>
+                <TextBox Grid.Row="2" Grid.Column="1" Style="{StaticResource X_TextBox}"/>
+
+                <Label Grid.Row="3" Style="{StaticResource X_Label_Base}" Margin="20,0,0,0" Content="材料："/>
+                <TextBox Grid.Row="3" Grid.Column="1" Style="{StaticResource X_TextBox}"/>
+
+                <Label Grid.Row="4" Style="{StaticResource X_Label_Base}" Margin="20,0,0,0" Content="单重："/>
+                <TextBox Grid.Row="4" Grid.Column="1" Style="{StaticResource X_TextBox}"/>
+
+                <Label Grid.Row="5" Style="{StaticResource X_Label_Base}" Margin="20,0,0,0" Content="品牌："/>
+                <TextBox Grid.Row="5" Grid.Column="1" Style="{StaticResource X_TextBox}"/>
+
+                <Label Grid.Row="6" Style="{StaticResource X_Label_Base}" Margin="20,0,0,0" Content="供应商："/>
+                <TextBox Grid.Row="6" Grid.Column="1" Style="{StaticResource X_TextBox}"/>
+
+                <Grid Grid.Row="7" Grid.Column="1" Margin="0,10,0,10">
+                    <Button Width="120" Style="{StaticResource X_Button}" Content="输出" HorizontalAlignment="Left"></Button>
+                    <Button Width="120" Style="{StaticResource X_Button_g}" Content="取消" HorizontalAlignment="Right"></Button>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

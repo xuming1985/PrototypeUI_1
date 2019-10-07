@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrototypeUI_1", "PrototypeU
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFDemo", "..\WPFDemo\WPFDemo.csproj", "{48FCA3D6-B3A0-4179-A37E-38BD5C68056C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrototypeService", "..\PrototypeService\PrototypeService.csproj", "{3252D9CC-20F5-464E-B3E8-4A950D6FAF40}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{48FCA3D6-B3A0-4179-A37E-38BD5C68056C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48FCA3D6-B3A0-4179-A37E-38BD5C68056C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48FCA3D6-B3A0-4179-A37E-38BD5C68056C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3252D9CC-20F5-464E-B3E8-4A950D6FAF40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3252D9CC-20F5-464E-B3E8-4A950D6FAF40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3252D9CC-20F5-464E-B3E8-4A950D6FAF40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3252D9CC-20F5-464E-B3E8-4A950D6FAF40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,11 +1,15 @@
 ﻿<Window x:Class="PrototypeUI_1.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="clr-namespace:PrototypeUI_1.ViewModels"
-        xmlns:v="clr-namespace:PrototypeUI_1.Views"
+        xmlns:vm="clr-namespace:PrototypeUI_1.ViewModel"
+        xmlns:v="clr-namespace:PrototypeUI_1.View"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        Title="跟踪剪切主机参数化设计软件" WindowStyle="ToolWindow" Width="1200" Height="750"
+        xmlns:converter="clr-namespace:PrototypeUI_1.Converter"
+        Title="跟踪剪切主机参数化设计软件" WindowStyle="ToolWindow"
         DataContext="{Binding Source={StaticResource Locator}, Path = Main}" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <converter:VisibilityConverter x:Key="Visibility"/>
+    </Window.Resources>
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/PrototypeUI_1;component/Images/background.jpg"/>
@@ -25,9 +29,9 @@
             <Label Content="跟踪剪切主机参数化设计软件" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,14" FontSize="24" FontWeight="Bold" Foreground="{StaticResource FgColor}"/>
         </Grid>
         <Grid Grid.Row="1">
-            <Grid x:Name="MainView">
+            <Grid x:Name="MainView" Visibility="{Binding Islogin,Converter={StaticResource Visibility}, ConverterParameter=true}">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="200"/>
                     <ColumnDefinition Width="900"/>
                 </Grid.ColumnDefinitions>
                 <Grid Background="{StaticResource ThemeColor}">
@@ -40,7 +44,7 @@
                     </TreeView>
                 </Grid>
                 <Grid Grid.Column="1" Margin="0,-1,0,0">
-                    <ContentControl Content="{Binding CurrentViewModel }">
+                    <ContentControl Content="{Binding CurrentViewModel }" VerticalAlignment="Top" Margin="0,60,0,0">
                         <ContentControl.Resources>
                             <DataTemplate DataType="{x:Type vm:PasswordUpdateViewModel}">
                                 <v:PasswordUpdateView/>
@@ -82,11 +86,28 @@
                     </ContentControl>
                 </Grid>
             </Grid>
+
+            <Grid Visibility="{Binding Islogin,Converter={StaticResource Visibility}, ConverterParameter=false}">
+                <Grid Width="691" Height="271"  DataContext="{Binding LoginVM}">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/PrototypeUI_1;component/Images/login_bd.png"/>
+                    </Grid.Background>
+                    <Label Content="Welcome" FontSize="33px" Foreground="{StaticResource FgColor}" Margin="36,19,0,0"/>
+                    <Border Width="39" Height="5" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="46,67,0,0" Background="#5ABEFF"/>
+
+                    <Label Content="工号：" FontSize="20" Margin="36,95,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="{StaticResource FgColor}"/>
+                    <TextBox Style="{StaticResource X_TextBox}" Text="{Binding JobNumber}" FontSize="20" Margin="96,100,0,0" Width="240" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                    <Label Content="密码：" FontSize="20" Margin="360,95,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="{StaticResource FgColor}"/>
+                    <TextBox Style="{StaticResource X_TextBox}" Text="{Binding Password}" FontSize="20" Margin="420,100,0,0" Width="240" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                    <Button Style="{StaticResource X_Button}" Command="{Binding LoginCommand}" Margin="0,187,150,0" Width="120" VerticalAlignment="Top" HorizontalAlignment="Center" Content="登录"/>
+                    <Button Style="{StaticResource X_Button_g}" Command="{Binding ExitCommand}" Margin="150,187,0,0" Width="120" VerticalAlignment="Top" HorizontalAlignment="Center" Content="退出"/>
+                </Grid>
+
+            </Grid>
             
-            <v:LoginView />
+            
+            <!--<v:LoginView DataContext="{Binding LoginVM}" Visibility="{Binding Islogin,Converter={StaticResource Visibility}, ConverterParameter=false}"/>-->
 
         </Grid>
-
-        
     </Grid>
 </Window>
