@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using PrototypeUI_1.Models;
+using PrototypeUI_1.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
