@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using PrototypeService;
 using PrototypeUI_1.Core;
 using PrototypeUI_1.Model;
@@ -23,6 +24,8 @@ namespace PrototypeUI_1.ViewModel
             ShowCommand = new RelayCommand(Show);
             DeleteCommand = new RelayCommand(Delete);
             Accounts = new ObservableCollection<AccountModel>();
+
+            Messenger.Default.Register<bool>(this, GetType().Name, ConfirmDelete);
         }
 
         /// <summary>
@@ -45,15 +48,38 @@ namespace PrototypeUI_1.ViewModel
         /// </summary>
         private void Delete()
         {
-            var selects = Accounts.Where(o=>o.IsSelected == true);
-            foreach(var model in selects)
+            Messenger.Default.Send(new PopMessageModel()
             {
-                if(model.JobNumber!= Utils.CurrentAccount.JobNumber)
+                Token = "ConfirmViewModel",
+                CallBackToken = GetType().Name,
+                Message = "是否确认删除选中的账号！"
+            }, "Pop");
+        }
+
+        /// <summary>
+        /// 确认删除
+        /// </summary>
+        /// <param name="confirm"></param>
+        private void ConfirmDelete(bool confirm)
+        {
+            if (confirm)
+            {
+                var selects = Accounts.Where(o => o.IsSelected == true);
+                foreach (var model in selects)
                 {
-                    _mockDataService.DeleteUser(model.JobNumber);
+                    if (model.JobNumber != Utils.CurrentAccount.JobNumber)
+                    {
+                        _mockDataService.DeleteUser(model.JobNumber);
+                    }
                 }
+                Show();
+
+                Messenger.Default.Send(new PopMessageModel()
+                {
+                    Token = "AlertViewModel",
+                    Message = "账号删除成功！"
+                }, "Pop");
             }
-            Show();
         }
     }
 }

@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace PrototypeService.Entity
 {
     public class Account
     {
+        public int Id { get; set; }
         public string UserName { get; set; }
 
         public string JobNumber { get; set; }
@@ -14,5 +12,10 @@ namespace PrototypeService.Entity
         public string Password { get; set; }
 
         public bool IsAdmin { get; set; }
+
+        public DateTime CreateTime { get; set; }
+
+        public int CreateUser { get; set; }
+
     }
 }

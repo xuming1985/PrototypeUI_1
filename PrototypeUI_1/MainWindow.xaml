@@ -44,7 +44,7 @@
                     </TreeView>
                 </Grid>
                 <Grid Grid.Column="1" Margin="0,-1,0,0">
-                    <ContentControl Content="{Binding CurrentViewModel }" VerticalAlignment="Top" Margin="0,60,0,0">
+                    <ContentControl Content="{Binding CurrentPartViewModel }" VerticalAlignment="Top" Margin="0,60,0,0">
                         <ContentControl.Resources>
                             <DataTemplate DataType="{x:Type vm:PasswordUpdateViewModel}">
                                 <v:PasswordUpdateView/>
@@ -104,8 +104,20 @@
                 </Grid>
 
             </Grid>
-            
-            
+
+
+            <Grid Visibility="{Binding IsPop, Converter={StaticResource Visibility}, ConverterParameter=true}">
+                <ContentControl Content="{Binding CurrentPopViewModel }" VerticalAlignment="Top" Margin="0,60,0,0">
+                    <ContentControl.Resources>
+                        <DataTemplate DataType="{x:Type vm:AlertViewModel}">
+                            <v:AlertView/>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type vm:ConfirmViewModel}">
+                            <v:ConfirmView/>
+                        </DataTemplate>
+                    </ContentControl.Resources>
+                </ContentControl>
+            </Grid>
             <!--<v:LoginView DataContext="{Binding LoginVM}" Visibility="{Binding Islogin,Converter={StaticResource Visibility}, ConverterParameter=false}"/>-->
 
         </Grid>

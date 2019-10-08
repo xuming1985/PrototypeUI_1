@@ -17,7 +17,6 @@
         <ResourceDictionary Source="Themes/DataGrid.xaml">
         </ResourceDictionary>
         <ResourceDictionary Source="Themes/ProgressBar.xaml">
-          <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:PrototypeUI_1.ViewModel" />
         </ResourceDictionary>
       </ResourceDictionary.MergedDictionaries>
       <viewmodels:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />

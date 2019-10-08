@@ -4,9 +4,10 @@ using PrototypeUI_1.Model;
 
 namespace PrototypeUI_1.ViewModel
 {
-    public class AlertViewModel : PopViewModel
+    public class ConfirmViewModel : PopViewModel
     {
         private string _message;
+        private PopMessageModel _receiveMessageModel;
 
         public string Message
         {
@@ -22,10 +23,12 @@ namespace PrototypeUI_1.ViewModel
         }
 
         public RelayCommand ConfirmCommand { get; set; }
-
-        public AlertViewModel()
+        public RelayCommand CancelCommand { get; set; }
+        
+        public ConfirmViewModel()
         {
             ConfirmCommand = new RelayCommand(Confirm);
+            CancelCommand = new RelayCommand(Cancel);
 
             Messenger.Default.Register<PopMessageModel>(this, GetType().Name, ShowMessage);
         }
@@ -36,7 +39,17 @@ namespace PrototypeUI_1.ViewModel
         private void Confirm()
         {
             Messenger.Default.Send<PopMessageModel>(null, PopToken);
+            Messenger.Default.Send(true, _receiveMessageModel.CallBackToken);
         }
+
+        /// <summary>
+        /// 取消按钮，只需要关闭弹框
+        /// </summary>
+        private void Cancel()
+        {
+            Messenger.Default.Send<PopMessageModel>(null, PopToken);
+        }
+        
 
         /// <summary>
         /// 显示弹出消息
@@ -44,6 +57,7 @@ namespace PrototypeUI_1.ViewModel
         /// <param name="message"></param>
         private void ShowMessage(PopMessageModel model)
         {
+            _receiveMessageModel = model;
             Message = model.Message;
         }
     }

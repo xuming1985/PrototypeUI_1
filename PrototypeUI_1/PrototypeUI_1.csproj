@@ -75,7 +75,9 @@
     <Compile Include="Converter\VisibilityConverter.cs" />
     <Compile Include="Core\Utils.cs" />
     <Compile Include="Model\AccountModel.cs" />
+    <Compile Include="Model\PopMessageModel.cs" />
     <Compile Include="Model\TreeNodeModel.cs" />
+    <Compile Include="ViewModel\ConfirmViewModel.cs" />
     <Compile Include="ViewModel\AlertViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\PopViewModel.cs" />
@@ -276,6 +278,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

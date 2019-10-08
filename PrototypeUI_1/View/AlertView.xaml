@@ -10,8 +10,8 @@
             <Grid.Background>
                 <ImageBrush ImageSource="/PrototypeUI_1;component/Images/background_h3.png"/>
             </Grid.Background>
-            <TextBlock Foreground="#B8E986" FontSize="18" Margin="0,66,0,180" HorizontalAlignment="Center" Text="是否优化自动生成的图纸？"/>
-            <Button VerticalAlignment="Top" Width="180" FontSize="14" Margin="0,195,0,0" Style="{StaticResource X_Button}"  Content="知道了"/>
+            <TextBlock Foreground="#B8E986" FontSize="18" Margin="0,66,0,180" HorizontalAlignment="Center" Text="{Binding Message}"/>
+            <Button VerticalAlignment="Top" Width="180" FontSize="14" Margin="0,195,0,0" Style="{StaticResource X_Button}" Command="{Binding ConfirmCommand}"  Content="知道了"/>
         </Grid>
     </Grid>
 </UserControl>

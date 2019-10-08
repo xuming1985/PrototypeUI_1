@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using PrototypeService;
+using PrototypeService.Service;
 using PrototypeUI_1.Core;
 using System;
 using System.Windows;
@@ -11,6 +12,8 @@ namespace PrototypeUI_1.ViewModel
     {
         private string _jobNumber = "admin";
         private string _password = "admin";
+
+        private AccountService _accountService;
         private MockDataService _mockDataService;
 
         public string JobNumber
@@ -44,6 +47,7 @@ namespace PrototypeUI_1.ViewModel
 
         public LoginViewModel()
         {
+            _accountService = new AccountService();
             _mockDataService = new MockDataService();
 
             LoginCommand = new RelayCommand(Login);
@@ -52,7 +56,7 @@ namespace PrototypeUI_1.ViewModel
 
         private void Login()
         {
-            Utils.CurrentAccount = _mockDataService.Login(JobNumber, Password);
+            Utils.CurrentAccount = _accountService.Login(JobNumber, Password);
             if (Utils.CurrentAccount != null)
             {
                 LoginSuccessed?.Invoke(Utils.CurrentAccount.IsAdmin);
