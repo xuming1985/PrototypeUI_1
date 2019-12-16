@@ -1,0 +1,53 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!--  全白 透明色  -->
+    <SolidColorBrush x:Key="TransparentColor" Color="#00FFFFFF" />
+    <!--  全黑 透明色  -->
+    <SolidColorBrush x:Key="TransparentBlackColor" Color="#00000000" />
+    <!--  主题色  -->
+    <SolidColorBrush x:Key="ThemeColor" Color="#111447" />
+    
+    <!--  背景色  -->
+    <SolidColorBrush x:Key="Bg_Content" Color="#EFF2F4"/>
+    <SolidColorBrush x:Key="Bg_Header" Color="#0099D9"/>
+    <SolidColorBrush x:Key="Bg_Footer" Color="#242831"/>
+    <SolidColorBrush x:Key="Bg_Focus_Blue" Color="#0090DA"/>
+    <SolidColorBrush x:Key="Bg_Button" Color="#0099D9"/>
+    <SolidColorBrush x:Key="Bg_Button_Disabled" Color="#E4E3E3"/>
+    <SolidColorBrush x:Key="Bg_Row_Odd" Color="#FBFBFC"/>
+    <SolidColorBrush x:Key="Bg_Row_Even" Color="#F5F5F5"/>
+    <SolidColorBrush x:Key="Bg_Row_Selected" Color="#0099D9"/>
+
+
+    <!--  前景色  -->
+    <SolidColorBrush x:Key="Fg_Text_Light" Color="White" />
+    <SolidColorBrush x:Key="Fg_Text_Dark" Color="#333333" />
+    <SolidColorBrush x:Key="Fg_Text_Pressed" Color="#0099D9" />
+    <SolidColorBrush x:Key="Fg_Text_Checked" Color="#0099D9" />
+    <SolidColorBrush x:Key="Fg_Text_Disabled" Color="#FAFAFB" />
+
+    <!--  边框颜色  -->
+    <SolidColorBrush x:Key="Bd_Focus_Blue" Color="#66BDE9" />
+    <SolidColorBrush x:Key="Bd_Pressed" Color="DarkOrange" />
+    <SolidColorBrush x:Key="Bd_Pressed_Blue" Color="#0099D9" />
+    <SolidColorBrush x:Key="Bd_MouseOver_Blue" Color="#0099D9" />
+    <SolidColorBrush x:Key="Bd_Checked" Color="#0099D9" />
+    <SolidColorBrush x:Key="Bd_Split" Color="#D8D8D9" />
+    <SolidColorBrush x:Key="Bd_Border" Color="#D8D8D9" />
+
+    <SolidColorBrush x:Key="ItemSelectedBackground" Color="#404394" />
+    <SolidColorBrush x:Key="ItemSelectedForeground" Color="#5ABEFF" />
+    <SolidColorBrush x:Key="ItemMouseOverBackground" Color="#404394" />
+    <SolidColorBrush x:Key="ItemMouseOverForeground" Color="DarkOrange" />
+
+    <!--ComBoBox项选中背景色-->
+    <SolidColorBrush x:Key="ComboBoxSelectdBackground" Color="#0099D9"/>
+    <!--ComBoBox项选中前景色-->
+    <SolidColorBrush x:Key="ComboBoxSelectedForeground" Color="White"/>
+    <!--ComBoBox项鼠标经过背景色-->
+    <SolidColorBrush x:Key="ComboBoxMouseOverBackground" Color="#F5F5F5"/>
+    <!--ComBoBox项鼠标经过前景色-->
+    <SolidColorBrush x:Key="ComboBoxMouseOverForegrond" Color="#333333"/>
+</ResourceDictionary>

@@ -26,17 +26,14 @@ namespace WPFDemo.Data
             {
                 new OrgModel()
                 {
-                    IsGrouping = true,
                     DisplayName = "单位名称(3/7)",
                     Children = new ObservableCollection<OrgModel>()
                     {
                         new OrgModel(){
-                            IsGrouping=true,
                             DisplayName="未分组联系人(2/4)",
                             Children=new ObservableCollection<OrgModel>()
                             {
                                 new OrgModel(){
-                                    IsGrouping=false,
                                     SurName="刘",
                                     Name="刘棒",
                                     Info="我要走向天空！",

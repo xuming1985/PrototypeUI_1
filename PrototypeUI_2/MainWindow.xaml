@@ -1,0 +1,86 @@
+﻿<Window xmlns:View="clr-namespace:PrototypeUI_2.View"  x:Class="PrototypeUI_2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:vm="clr-namespace:PrototypeUI_2.ViewModel"
+        xmlns:v="clr-namespace:PrototypeUI_2.View" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PrototypeUI_2" WindowState="Maximized"
+        DataContext="{Binding Source={StaticResource Locator}, Path = Main}"
+        mc:Ignorable="d"  Title="MainWindow" Height="1080" Width="1920">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Height="93" Background="{StaticResource Bg_Header}">
+            <Image HorizontalAlignment="Left" Margin="50,0,0,0" Source="Images/logo.png" Height="50"/>
+            <Label Margin="120,0,0,0" Content="管网检测工程管理系统" VerticalAlignment="Center" FontSize="20" Foreground="White"/>
+            
+            <Grid HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <RadioButton Grid.Column="0" Content="工程管理" Command="{Binding NavigateCommand}" CommandParameter="ProjectManage" Style="{StaticResource RadioButton_gcgl}"  IsChecked="True"/>
+                <RadioButton Grid.Column="1" Content="报告报表" Command="{Binding NavigateCommand}" CommandParameter="ReportForms" Style="{StaticResource RadioButton_bgbb}"/>
+                <RadioButton Grid.Column="2" Content="信息管理" Command="{Binding NavigateCommand}" CommandParameter="InformationManage" Style="{StaticResource RadioButton_xxgl}"/>
+                <RadioButton Grid.Column="3" Content="系统管理" Command="{Binding NavigateCommand}" CommandParameter="SystemManage" Style="{StaticResource RadioButton_xtgl}"/>
+            </Grid>
+
+            <Border HorizontalAlignment="Right" Margin="0,0,180,0" Width="40" Height="40" CornerRadius="20" >
+                <Border.Background>
+                    <ImageBrush ImageSource="Images/profile/1.jpg"/>
+                </Border.Background>
+            </Border>
+
+            <Label x:Name="popTag" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,240,0"/>
+
+            <ToggleButton x:Name="tbPerson" Grid.Column="1" Style="{StaticResource TBPerson}" Content="luck001">
+            </ToggleButton>
+            <Popup IsOpen="{Binding ElementName=tbPerson, Path=IsChecked, Mode=TwoWay}" PlacementTarget="{Binding ElementName=popTag}"  Placement="Bottom" Focusable="False" AllowsTransparency="True" PopupAnimation="Slide" StaysOpen="False">
+                <Border x:Name="DropDownBorder"  Background="White" BorderThickness="1" BorderBrush="{StaticResource Bd_Split}" Height="160" Width="220" Padding="8" CornerRadius="0,0,8,8">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="65"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Border HorizontalAlignment="Left"  Margin="15,0,0,0" Width="40" Height="40" CornerRadius="20" >
+                            <Border.Background>
+                                <ImageBrush ImageSource="Images/profile/1.jpg"/>
+                            </Border.Background>
+                        </Border>
+                        <Label Content="luck001" VerticalAlignment="Center" Margin="60,0,0,0" Foreground="{StaticResource Fg_Text_Dark}"/>
+                        <Border Grid.Row="1" Background="{StaticResource Bd_Split}" Height="1" Margin="5,0,5,0"/>
+                        <Button Grid.Row="2" Style="{StaticResource BtnPersonCenter}" Content="个人中心" />
+                        <Button Grid.Row="3" Style="{StaticResource BtnPersonExit}" Content="退出登录" />
+                    </Grid>
+                </Border>
+            </Popup>
+        </Grid>
+        <Grid Grid.Row="1" Background="{StaticResource Bg_Content}">
+            <ContentControl Content="{Binding CurrentPartViewModel }">
+                <ContentControl.Resources>
+                    <DataTemplate  DataType="{x:Type vm:ProjectManageViewModel}">
+                        <v:ProjectManageView/>
+                    </DataTemplate>
+                    <DataTemplate  DataType="{x:Type vm:ReportFormsViewModel}">
+                        <v:ReportFormsView/>
+                    </DataTemplate>
+                    <DataTemplate  DataType="{x:Type vm:InformationManageViewModel}">
+                        <v:InformationManageView/>
+                    </DataTemplate>
+                    <DataTemplate  DataType="{x:Type vm:SystemManageViewModel}">
+                        <v:SystemManageView/>
+                    </DataTemplate>
+                </ContentControl.Resources>
+            </ContentControl>
+        </Grid>
+        <Grid Grid.Row="2" Height="40" Background="{StaticResource Bg_Footer}"/>
+    </Grid>
+</Window>
