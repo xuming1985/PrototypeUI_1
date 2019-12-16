@@ -22,7 +22,6 @@ D:\Xm\Prototype\PrototypeUI_2\obj\Debug\Styles\Button.baml
 D:\Xm\Prototype\PrototypeUI_2\bin\Debug\Images\header_exit.png
 D:\Xm\Prototype\PrototypeUI_2\obj\Debug\View\ProjectManageView.g.cs
 D:\Xm\Prototype\PrototypeUI_2\obj\Debug\View\ProjectManageView.baml
-D:\Xm\Prototype\PrototypeUI_2\obj\Debug\PrototypeUI_2.csprojAssemblyReference.cache
 D:\Xm\Prototype\PrototypeUI_2\obj\Debug\Styles\Text.baml
 D:\Xm\Prototype\PrototypeUI_2\obj\Debug\GeneratedInternalTypeHelper.g.cs
 D:\Xm\Prototype\PrototypeUI_2\obj\Debug\View\Paging.g.cs
@@ -47,3 +46,4 @@ D:\Xm\Prototype\PrototypeUI_2\obj\Debug\View\InformationManageView.baml
 D:\Xm\Prototype\PrototypeUI_2\obj\Debug\View\ReportFormsView.baml
 D:\Xm\Prototype\PrototypeUI_2\obj\Debug\View\SystemManageView.baml
 D:\Xm\Prototype\PrototypeUI_2\obj\Debug\Styles\ComboBox.baml
+D:\Xm\Prototype\PrototypeUI_2\obj\Debug\Styles\DataGrid.baml

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Xm\Prototype\PrototypeUI_2\App.xaml
-121537375172
+13-1065276165
 4-2085673458
-22-8638944
+24-2136019020
 681167429750
-MainWindow.xaml;Styles\Base.xaml;Styles\RadioButton.xaml;Styles\Button.xaml;Styles\CheckBox.xaml;Styles\ComboBox.xaml;Styles\Text.xaml;View\InformationManageView.xaml;View\Paging.xaml;View\ProjectManageView.xaml;View\ReportFormsView.xaml;View\SystemManageView.xaml;
+MainWindow.xaml;Styles\Base.xaml;Styles\RadioButton.xaml;Styles\Button.xaml;Styles\CheckBox.xaml;Styles\ComboBox.xaml;Styles\DataGrid.xaml;Styles\Text.xaml;View\InformationManageView.xaml;View\Paging.xaml;View\ProjectManageView.xaml;View\ReportFormsView.xaml;View\SystemManageView.xaml;
 
 False
 

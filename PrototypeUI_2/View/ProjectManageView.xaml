@@ -4,8 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PrototypeUI_2.View"
+             xmlns:converter="clr-namespace:PrototypeUI_2.Converter"
              mc:Ignorable="d"  Background="{StaticResource Bg_Content}"
              d:DesignHeight="800" d:DesignWidth="1920">
+    <UserControl.Resources>
+        <converter:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="45"/>
@@ -18,9 +22,9 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <RadioButton Grid.Column="0" Style="{StaticResource RadioButton_xmxx}" Content="项目信息" IsChecked="True"/>
+            <RadioButton Grid.Column="0" Style="{StaticResource RadioButton_xmxx}" Content="项目信息" x:Name="rbInformation"/>
             <Border Grid.Column="1" Background="{StaticResource Bd_Split}" Width="2" Margin="0,12,0,12" />
-            <RadioButton Grid.Column="2" Style="{StaticResource RadioButton_gxtj}" Content="工程统计" />
+            <RadioButton Grid.Column="2" Style="{StaticResource RadioButton_gxtj}" Content="工程统计"  x:Name="rbStatistics"  IsChecked="True"/>
         </Grid>
         <Border Grid.Row="1" Height="80" Margin="30,30,30,20" Background="White" BorderBrush="{StaticResource Bd_Split}" BorderThickness="1">
             <Grid>
@@ -32,9 +36,12 @@
                     <DatePicker.Style>
                         <Style TargetType="DatePicker">
                             <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
                             <Setter Property="HorizontalAlignment" Value="Left"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource Bd_Border}"/>
                             <Setter Property="Width" Value="185"/>
                             <Setter Property="Height" Value="35"/>
+                            <Setter Property="Padding" Value="10,0,0,0"/>
                         </Style>
                     </DatePicker.Style>
                 </DatePicker>
@@ -47,125 +54,82 @@
         </Border>
 
         <Grid Grid.Row="2" Margin="30,0,30,20">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
-            <Grid.Resources>
-                <Style TargetType="DataGrid">
-                    <Setter Property="Background" Value="Transparent" />
-                    <Setter Property="BorderBrush" Value="{StaticResource Bd_Split}" />
-                    <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource Bd_Split}"/>
-                    <Setter Property="VerticalGridLinesBrush" Value="{StaticResource Bd_Split}"/>
-                    <Setter Property="AutoGenerateColumns" Value="False"/>
-                    <Setter Property="CanUserAddRows" Value="False"/>
-                    <Setter Property="CanUserResizeColumns" Value="false"/>
-                    <Setter Property="RowHeaderWidth" Value="0"/>
-                    <Setter Property="RowBackground" Value="{StaticResource Bg_Row_Odd}"/>
-                    <Setter Property="AlternatingRowBackground" Value="{StaticResource Bg_Row_Even}"/>
-                </Style>
+            <Grid Visibility="{Binding ElementName=rbInformation, Path=IsChecked, Converter={StaticResource BoolToVisibility}, ConverterParameter=true}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <DataGrid Grid.Row="0" ItemsSource="{Binding Projects}">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn  Width="38">
+                            <DataGridTemplateColumn.Header>
+                                <CheckBox Style="{StaticResource CbNormal}"/>
+                            </DataGridTemplateColumn.Header>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding IsSelected}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="项目编号" Width="70" Binding="{Binding SerialNo}"/>
+                        <DataGridTextColumn Header="工程名称" Width="150" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="项目地点" Width="155" Binding="{Binding Address}"/>
+                        <DataGridTextColumn Header="委托单位" Width="145" Binding="{Binding EntrustingPart}"/>
+                        <DataGridTextColumn Header="检查单位" Width="215" Binding="{Binding DetectionPart}"/>
+                        <DataGridTextColumn Header="批准人" Width="80" Binding="{Binding Approver}"/>
+                        <DataGridTextColumn Header="审定人" Width="80" Binding="{Binding Verifier}"/>
+                        <DataGridTextColumn Header="审核人" Width="80" Binding="{Binding Auditor}"/>
+                        <DataGridTextColumn Header="校对人" Width="80" Binding="{Binding Checker}"/>
+                        <DataGridTextColumn Header="编写人" Width="80" Binding="{Binding Author}"/>
+                        <DataGridTextColumn Header="项目管理员" Width="120" Binding="{Binding Administrator}"/>
+                        <DataGridTextColumn Header="内业操作员" Width="200" Binding="{Binding InnerOperator}"/>
+                        <DataGridTextColumn Header="外业操作员" Width="200" Binding="{Binding OutterOperator}"/>
+                        <DataGridTextColumn Header="操作" Width="*"/>
+                    </DataGrid.Columns>
 
-                <!--标题栏样式-->
-                <Style TargetType="DataGridColumnHeader">
-                    <Setter Property="SnapsToDevicePixels" Value="True" />
-                    <Setter Property="Height" Value="40"/>
-                    <Setter Property="Foreground" Value="{StaticResource Fg_Text_Dark}" />
-                    <Setter Property="FontSize" Value="14" />
-                    <Setter Property="Cursor" Value="Hand" />
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="DataGridColumnHeader">
-                                <Border x:Name="BackgroundBorder" BorderThickness="0,0,1,1" BorderBrush="{StaticResource Bd_Split}" Margin="0,0,-1,0" Width="Auto">
-                                    <Grid >
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <ContentPresenter  Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                        <Path x:Name="SortArrow" Visibility="Collapsed" Data="M0,0 L1,0 0.5,1 z" Stretch="Fill"  Grid.Column="2" Width="8" Height="6" Fill="White" Margin="0,0,50,0" 
-                            VerticalAlignment="Center" RenderTransformOrigin="1,1" />
-                                    </Grid>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-                
-                <!--行样式触发-->
-                <!--背景色改变必须先设置cellStyle 因为cellStyle会覆盖rowStyle样式-->
-                <Style  TargetType="DataGridRow">
-                    <Setter Property="Height" Value="48"/>
-                    <Setter Property="Foreground" Value="{StaticResource Fg_Text_Dark}" />
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" Value="{StaticResource Bg_Row_Selected}"/>
-                        </Trigger>
+                </DataGrid>
+                <Border Grid.Row="1" Height="85" BorderBrush="{StaticResource Bd_Split}" BorderThickness="1,0,1,1">
+                    <local:Paging  DataContext="{Binding PagingVM}"/>
+                </Border>
+            </Grid>
+            <Grid Visibility="{Binding ElementName=rbStatistics, Path=IsChecked, Converter={StaticResource BoolToVisibility}, ConverterParameter=true}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <DataGrid Grid.Row="0" ItemsSource="{Binding Statistics}">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn  Width="38">
+                            <DataGridTemplateColumn.Header>
+                                <CheckBox Style="{StaticResource CbNormal}"/>
+                            </DataGridTemplateColumn.Header>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding IsSelected}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="项目编号" Width="70" Binding="{Binding SerialNo}"/>
+                        <DataGridTextColumn Header="工程名称" Width="150" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="道路数量" Width="155" Binding="{Binding Address}"/>
+                        <DataGridTextColumn Header="管道数量" Width="85" Binding="{Binding EntrustingPart}"/>
+                        <DataGridTextColumn Header="检测里程" Width="85" Binding="{Binding DetectionPart}"/>
+                        <DataGridTextColumn Header="已判读公里" Width="85" Binding="{Binding Approver}"/>
+                        <DataGridTextColumn Header="已检测里程" Width="85" Binding="{Binding Verifier}"/>
+                        <DataGridTextColumn Header="开始时间" Width="100" Binding="{Binding Auditor}"/>
+                        <DataGridTextColumn Header="计划完成时间" Width="100" Binding="{Binding Checker}"/>
+                        <DataGridTextColumn Header="缺陷评估标准" Width="180" Binding="{Binding Author}"/>
+                        <DataGridTextColumn Header="项目状态" Width="100" Binding="{Binding Administrator}"/>
+                        <DataGridTextColumn Header="设备详情" Width="100" Binding="{Binding InnerOperator}"/>
+                        <DataGridTextColumn Header="进度" Width="240" Binding="{Binding OutterOperator}"/>
+                        <DataGridTextColumn Header="操作" Width="*"/>
+                    </DataGrid.Columns>
 
-                        <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" Value="{StaticResource Bg_Row_Selected}"/>
-                            <Setter Property="Foreground" Value="{StaticResource Fg_Text_Light}"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-
-                <!--单元格样式触发-->
-                <Style TargetType="DataGridCell">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="DataGridCell">
-                                <TextBlock TextAlignment="Center" VerticalAlignment="Center"  >
-                           <ContentPresenter />
-                                </TextBlock>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" Value="{StaticResource Bg_Row_Selected}"/>
-                            <Setter Property="Foreground" Value="{StaticResource Fg_Text_Light}"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-                
-                <Style TargetType="CheckBox">
-                    <Setter Property="SnapsToDevicePixels" Value="True" />
-                    <Setter Property="Height" Value="14"/>
-                    <Setter Property="Width" Value="14"/>
-                    <Setter Property="BorderThickness" Value="1"/>
-                    <Setter Property="BorderBrush" Value="{StaticResource Bd_Split}" />
-                </Style>
-            </Grid.Resources>
-            <DataGrid Grid.Row="0" ItemsSource="{Binding Projects}">
-                <DataGrid.Columns>
-                    <DataGridTemplateColumn  Width="38">
-                        <DataGridTemplateColumn.Header>
-                            <CheckBox />
-                        </DataGridTemplateColumn.Header>
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <CheckBox IsChecked="{Binding IsSelected}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="项目编号" Width="70" Binding="{Binding SerialNo}"/>
-                    <DataGridTextColumn Header="工程名称" Width="150" Binding="{Binding Name}"/>
-                    <DataGridTextColumn Header="项目地点" Width="155" Binding="{Binding Address}"/>
-                    <DataGridTextColumn Header="委托单位" Width="145" Binding="{Binding EntrustingPart}"/>
-                    <DataGridTextColumn Header="检查单位" Width="215" Binding="{Binding DetectionPart}"/>
-                    <DataGridTextColumn Header="批准人" Width="80" Binding="{Binding Approver}"/>
-                    <DataGridTextColumn Header="审定人" Width="80" Binding="{Binding Verifier}"/>
-                    <DataGridTextColumn Header="审核人" Width="80" Binding="{Binding Auditor}"/>
-                    <DataGridTextColumn Header="校对人" Width="80" Binding="{Binding Checker}"/>
-                    <DataGridTextColumn Header="编写人" Width="80" Binding="{Binding Author}"/>
-                    <DataGridTextColumn Header="项目管理员" Width="120" Binding="{Binding Administrator}"/>
-                    <DataGridTextColumn Header="内业操作员" Width="200" Binding="{Binding InnerOperator}"/>
-                    <DataGridTextColumn Header="外业操作员" Width="200" Binding="{Binding OutterOperator}"/>
-                    <DataGridTextColumn Header="操作" Width="*"/>
-                </DataGrid.Columns>
-                
-            </DataGrid>
-            <Border Grid.Row="1" Height="85" BorderBrush="{StaticResource Bd_Split}" BorderThickness="1,0,1,1">
-                <local:Paging  DataContext="{Binding PagingVM}"/>
-            </Border>
+                </DataGrid>
+                <Border Grid.Row="1" Height="85" BorderBrush="{StaticResource Bd_Split}" BorderThickness="1,0,1,1">
+                    <local:Paging  DataContext="{Binding PagingVM}"/>
+                </Border>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

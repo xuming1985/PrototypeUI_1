@@ -71,10 +71,12 @@ namespace PrototypeUI_2.ViewModel
         }
         public List<string> EntrustingParts { get; set; }
         public ObservableCollection<ProjectModel> Projects { get; set; }
-
+        public ObservableCollection<ProjectModel> Statistics { get; set; }
+        
         public ProjectManageViewModel()
         {
             Projects = new ObservableCollection<ProjectModel>();
+            Statistics = new ObservableCollection<ProjectModel>();
             PagingVM = new PagingViewModel();
             EntrustingParts = MockService.GetEntrustingParts();
 

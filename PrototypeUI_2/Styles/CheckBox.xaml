@@ -3,11 +3,11 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Base.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <Style x:Key="LblProperty" TargetType="Label">
-        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="FontSize" Value="16"/>
-        <Setter Property="Foreground" Value="{StaticResource Fg_Text_Dark}"/>
+    <Style x:Key="CbNormal" TargetType="CheckBox">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Height" Value="14"/>
+        <Setter Property="Width" Value="14"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Bd_Split}" />
     </Style>
 </ResourceDictionary>

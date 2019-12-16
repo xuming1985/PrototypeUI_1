@@ -69,6 +69,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converter\BoolToVisibilityConverter.cs" />
     <Compile Include="Core\MockService.cs" />
     <Compile Include="Core\Utils.cs" />
     <Compile Include="Model\ProjectModel.cs" />
@@ -124,6 +125,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\ComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\DataGrid.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

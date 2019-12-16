@@ -11,7 +11,7 @@ namespace PrototypeUI_2.ViewModel
     {
         private int _pageInput;
         private int _page = 0;
-        private int _pageCount = 15;
+        private int _pageCount = 12;
         private int _total;
         private int _totalPage;
 
