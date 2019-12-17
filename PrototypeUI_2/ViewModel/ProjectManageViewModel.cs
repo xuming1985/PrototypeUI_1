@@ -15,9 +15,8 @@ namespace PrototypeUI_2.ViewModel
         private string _entrustingPart;
         private string _nameKey;
         private DateTime? _createTimeStart;
-        private int _page = 0;
-        private int _count = 15;
         private PagingViewModel _paging;
+        private PagingViewModel _pagingStatistics;
 
         public string EntrustingPart
         {
@@ -55,8 +54,6 @@ namespace PrototypeUI_2.ViewModel
                 }
             }
         }
-
-
         public PagingViewModel PagingVM
         {
             get { return _paging; }
@@ -69,22 +66,42 @@ namespace PrototypeUI_2.ViewModel
                 }
             }
         }
+        public PagingViewModel PagingStatisticsVM
+        {
+            get { return _pagingStatistics; }
+            set
+            {
+                if (_pagingStatistics != value)
+                {
+                    _pagingStatistics = value;
+                    RaisePropertyChanged("PagingStatisticsVM");
+                }
+            }
+        }
         public List<string> EntrustingParts { get; set; }
         public ObservableCollection<ProjectModel> Projects { get; set; }
-        public ObservableCollection<ProjectModel> Statistics { get; set; }
+        public ObservableCollection<ProjectStatisticsModel> Statistics { get; set; }
         
         public ProjectManageViewModel()
         {
             Projects = new ObservableCollection<ProjectModel>();
-            Statistics = new ObservableCollection<ProjectModel>();
+            Statistics = new ObservableCollection<ProjectStatisticsModel>();
             PagingVM = new PagingViewModel();
+            PagingStatisticsVM = new PagingViewModel();
             EntrustingParts = MockService.GetEntrustingParts();
 
-            var result = MockService.GetProjects(EntrustingPart, CreateTimeStart, NameKey, _page, _count) ;
+            var result = MockService.GetProjects(EntrustingPart, CreateTimeStart, NameKey, PagingVM.Page, PagingVM.PageCount) ;
             PagingVM.Init(result.Total);
             foreach (var item in result.Data)
             {
                 Projects.Add(item);
+            }
+
+            var resultStatistics = MockService.GetProjectStatistics(PagingStatisticsVM.Page, PagingStatisticsVM.PageCount);
+            PagingStatisticsVM.Init(resultStatistics.Total);
+            foreach (var item in resultStatistics.Data)
+            {
+                Statistics.Add(item);
             }
         }
     }

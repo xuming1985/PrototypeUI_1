@@ -9,25 +9,40 @@ namespace PrototypeUI_2.ViewModel
 {
     public class PagingViewModel : ViewModelBase
     {
-        private int _pageInput;
         private int _page = 0;
         private int _pageCount = 12;
         private int _total;
         private int _totalPage;
 
-        public int PageInput
+        //当前页
+        public int Page
         {
-            get { return _pageInput; }
+            get { return _page; }
             set
             {
-                if (_pageInput != value)
+                if (_page != value)
                 {
-                    _pageInput = value;
-                    RaisePropertyChanged("PageInput");
+                    _page = value;
+                    RaisePropertyChanged("Page");
                 }
             }
         }
 
+        //每页显示数量
+        public int PageCount
+        {
+            get { return _pageCount; }
+            set
+            {
+                if (_pageCount != value)
+                {
+                    _pageCount = value;
+                    RaisePropertyChanged("PageCount");
+                }
+            }
+        }
+
+        //共多少页
         public int TotalPage
         {
             get { return _totalPage; }
@@ -40,7 +55,6 @@ namespace PrototypeUI_2.ViewModel
                 }
             }
         }
-
 
         public void Init(int total)
         {

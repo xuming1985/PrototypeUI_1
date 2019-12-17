@@ -144,15 +144,15 @@
 
     <Style x:Key="BtnPrevious" TargetType="Button">
         <Setter Property="Margin" Value="5"/>
-        <Setter Property="Width" Value="36"/>
-        <Setter Property="Height" Value="35"/>
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Height" Value="30"/>
         <Setter Property="Foreground" Value="{StaticResource Bd_Border}"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="{StaticResource Bd_Border}">
-                        <Polyline Stroke="{TemplateBinding Foreground}" StrokeThickness="2" StrokeLineJoin="Round" Points="24,5 12,17 24,29" />
+                        <Polyline Stroke="{TemplateBinding Foreground}" StrokeThickness="2" StrokeLineJoin="Round" Points="20,5 8,15 20,25" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="false">
@@ -170,17 +170,18 @@
             </Setter.Value>
         </Setter>
     </Style>
+   
     <Style x:Key="BtnNext" TargetType="Button">
         <Setter Property="Margin" Value="5"/>
-        <Setter Property="Width" Value="36"/>
-        <Setter Property="Height" Value="35"/>
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Height" Value="30"/>
         <Setter Property="Foreground" Value="{StaticResource Bd_Border}"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="{StaticResource Bd_Border}">
-                        <Polyline Stroke="{TemplateBinding Foreground}" StrokeThickness="2" StrokeLineJoin="Round" Points="12,5 24,17 12,29" />
+                        <Polyline Stroke="{TemplateBinding Foreground}" StrokeThickness="2" StrokeLineJoin="Round" Points="12,5 20,15 12,25" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="false">
@@ -198,11 +199,14 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
     <Style x:Key="BtnBorder" TargetType="Button">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="Margin" Value="5"/>
         <Setter Property="Padding" Value="15,0,15,0"/>
-        <Setter Property="Height" Value="35"/>
-        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="FontSize" Value="14"/>
         <Setter Property="Foreground" Value="{StaticResource Fg_Text_Dark}"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="{StaticResource Bd_Border}"/>
@@ -211,7 +215,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
-                        <ContentPresenter VerticalAlignment="Center"/>
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="false">
@@ -224,6 +228,68 @@
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="BorderBrush" Value="{StaticResource Bd_Pressed_Blue}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="BtnLink" TargetType="Button">
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Padding" Value="15,5,15,0"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="{StaticResource Fg_Text_Blue}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Fg_Text_Blue}"/>
+        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="BorderBrush" Value="{StaticResource Fg_Text_MouseOver}"/>
+                            <Setter Property="Background" Value="{StaticResource Fg_Text_MouseOver}"/>
+                            <Setter Property="Foreground" Value="{StaticResource Fg_Text_Light}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="BorderBrush" Value="{StaticResource Fg_Text_MouseOver}"/>
+                            <Setter Property="Foreground" Value="{StaticResource Fg_Text_MouseOver}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="BtnText" TargetType="Button">
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Padding" Value="15,5,15,5"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="{StaticResource Fg_Text_Blue}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="BorderBrush" Value="{StaticResource Fg_Text_MouseOver}"/>
+                            <Setter Property="Background" Value="{StaticResource Fg_Text_MouseOver}"/>
+                            <Setter Property="Foreground" Value="{StaticResource Fg_Text_Light}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="BorderBrush" Value="{StaticResource Fg_Text_MouseOver}"/>
+                            <Setter Property="Foreground" Value="{StaticResource Fg_Text_MouseOver}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

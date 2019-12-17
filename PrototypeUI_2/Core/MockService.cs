@@ -90,9 +90,12 @@ namespace PrototypeUI_2.Core
             return result;
         }
 
-        public static PagedSearchResult<ProjectModel> GetProjectStatistics()
+        public static PagedSearchResult<ProjectStatisticsModel> GetProjectStatistics(int page, int count)
         {
-            return _projectStatistics;
+            var result = new PagedSearchResult<ProjectStatisticsModel>();
+            result.Total = _projectStatistics.Count();
+            result.Data = _projectStatistics.Skip((page - 1) * count).Take(count).ToList();
+            return result;
         }
 
         public static List<string> GetEntrustingParts()

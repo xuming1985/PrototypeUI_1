@@ -19,18 +19,21 @@
     <SolidColorBrush x:Key="Bg_Row_Odd" Color="#FBFBFC"/>
     <SolidColorBrush x:Key="Bg_Row_Even" Color="#F5F5F5"/>
     <SolidColorBrush x:Key="Bg_Row_Selected" Color="#0099D9"/>
+    <SolidColorBrush x:Key="Bg_Paging" Color="#FBFBFC"/>
 
 
     <!--  前景色  -->
     <SolidColorBrush x:Key="Fg_Text_Light" Color="White" />
     <SolidColorBrush x:Key="Fg_Text_Dark" Color="#333333" />
+    <SolidColorBrush x:Key="Fg_Text_Blue" Color="#0099D9" />
     <SolidColorBrush x:Key="Fg_Text_Pressed" Color="#0099D9" />
     <SolidColorBrush x:Key="Fg_Text_Checked" Color="#0099D9" />
     <SolidColorBrush x:Key="Fg_Text_Disabled" Color="#FAFAFB" />
+    <SolidColorBrush x:Key="Fg_Text_MouseOver" Color="#FF8000" />
 
     <!--  边框颜色  -->
     <SolidColorBrush x:Key="Bd_Focus_Blue" Color="#66BDE9" />
-    <SolidColorBrush x:Key="Bd_Pressed" Color="DarkOrange" />
+    <SolidColorBrush x:Key="Bd_Pressed" Color="#FF8000" />
     <SolidColorBrush x:Key="Bd_Pressed_Blue" Color="#0099D9" />
     <SolidColorBrush x:Key="Bd_MouseOver_Blue" Color="#0099D9" />
     <SolidColorBrush x:Key="Bd_Checked" Color="#0099D9" />

@@ -22,9 +22,9 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <RadioButton Grid.Column="0" Style="{StaticResource RadioButton_xmxx}" Content="项目信息" x:Name="rbInformation"/>
+            <RadioButton Grid.Column="0" Style="{StaticResource RadioButton_xmxx}" Content="项目信息" x:Name="rbInformation"  IsChecked="True"/>
             <Border Grid.Column="1" Background="{StaticResource Bd_Split}" Width="2" Margin="0,12,0,12" />
-            <RadioButton Grid.Column="2" Style="{StaticResource RadioButton_gxtj}" Content="工程统计"  x:Name="rbStatistics"  IsChecked="True"/>
+            <RadioButton Grid.Column="2" Style="{StaticResource RadioButton_gxtj}" Content="工程统计"  x:Name="rbStatistics"/>
         </Grid>
         <Border Grid.Row="1" Height="80" Margin="30,30,30,20" Background="White" BorderBrush="{StaticResource Bd_Split}" BorderThickness="1">
             <Grid>
@@ -67,28 +67,95 @@
                             </DataGridTemplateColumn.Header>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <CheckBox IsChecked="{Binding IsSelected}"/>
+                                    <CheckBox Style="{StaticResource CbNormal}" IsChecked="{Binding IsSelected}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <DataGridTextColumn Header="项目编号" Width="70" Binding="{Binding SerialNo}"/>
                         <DataGridTextColumn Header="工程名称" Width="150" Binding="{Binding Name}"/>
                         <DataGridTextColumn Header="项目地点" Width="155" Binding="{Binding Address}"/>
-                        <DataGridTextColumn Header="委托单位" Width="145" Binding="{Binding EntrustingPart}"/>
-                        <DataGridTextColumn Header="检查单位" Width="215" Binding="{Binding DetectionPart}"/>
+                        <DataGridTemplateColumn Header="委托单位" Width="145">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border >
+                                        <Button x:Name="btnEntrustingPart" Content="{Binding EntrustingPart}" Style="{StaticResource BtnLink}"/>
+                                    </Border>
+                                    <DataTemplate.Triggers>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGridCell}}, Path=IsSelected}" Value="True" />
+                                                <Condition Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGridCell}}, Path=IsMouseOver}" Value="False" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter TargetName="btnEntrustingPart" Property="Foreground" Value="White"/>
+                                            <Setter TargetName="btnEntrustingPart" Property="BorderBrush" Value="White"/>
+                                        </MultiDataTrigger>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGridCell}}, Path=IsSelected}" Value="True" />
+                                                <Condition Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGridCell}}, Path=IsMouseOver}" Value="True" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter TargetName="btnEntrustingPart" Property="Foreground" Value="White"/>
+                                        </MultiDataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="检查单位" Width="215">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border>
+                                        <Button x:Name="btnDetectionPart" Content="{Binding DetectionPart}" Style="{StaticResource BtnLink}"/>
+                                    </Border>
+                                    <DataTemplate.Triggers>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGridCell}}, Path=IsSelected}" Value="True" ></Condition>
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter TargetName="btnDetectionPart" Property="Foreground" Value="White"/>
+                                            <Setter TargetName="btnDetectionPart" Property="BorderBrush" Value="White"/>
+                                        </MultiDataTrigger>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGridCell}}, Path=IsSelected}" Value="True" />
+                                                <Condition Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGridCell}}, Path=IsMouseOver}" Value="True" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter TargetName="btnDetectionPart" Property="Foreground" Value="White"/>
+                                        </MultiDataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                         <DataGridTextColumn Header="批准人" Width="80" Binding="{Binding Approver}"/>
                         <DataGridTextColumn Header="审定人" Width="80" Binding="{Binding Verifier}"/>
                         <DataGridTextColumn Header="审核人" Width="80" Binding="{Binding Auditor}"/>
                         <DataGridTextColumn Header="校对人" Width="80" Binding="{Binding Checker}"/>
                         <DataGridTextColumn Header="编写人" Width="80" Binding="{Binding Author}"/>
-                        <DataGridTextColumn Header="项目管理员" Width="120" Binding="{Binding Administrator}"/>
-                        <DataGridTextColumn Header="内业操作员" Width="200" Binding="{Binding InnerOperator}"/>
-                        <DataGridTextColumn Header="外业操作员" Width="200" Binding="{Binding OutterOperator}"/>
-                        <DataGridTextColumn Header="操作" Width="*"/>
+                        <DataGridTextColumn Header="项目管理员" Width="110" Binding="{Binding Administrator}"/>
+                        <DataGridTextColumn Header="内业操作员" Width="175" Binding="{Binding InnerOperator}"/>
+                        <DataGridTextColumn Header="外业操作员" Width="175" Binding="{Binding OutterOperator}"/>
+                        <DataGridTemplateColumn Header="操作" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Button x:Name="btnEdit" Grid.Column="0" Content="编辑" Style="{StaticResource BtnText}" />
+                                        <Button x:Name="btnCheckTask" Grid.Column="1" Content="检测任务" Style="{StaticResource BtnText}"/>
+                                    </Grid>
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGridCell}}, Path=IsSelected}" Value="True" >
+                                            <Setter TargetName="btnEdit" Property="Foreground" Value="White"/>
+                                            <Setter TargetName="btnCheckTask" Property="Foreground" Value="White"/>
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
-
                 </DataGrid>
-                <Border Grid.Row="1" Height="85" BorderBrush="{StaticResource Bd_Split}" BorderThickness="1,0,1,1">
+                <Border Grid.Row="1" Height="85" BorderBrush="{StaticResource Bd_Split}" BorderThickness="1,0,1,1" Background="{StaticResource Bg_Paging}">
                     <local:Paging  DataContext="{Binding PagingVM}"/>
                 </Border>
             </Grid>
@@ -105,29 +172,61 @@
                             </DataGridTemplateColumn.Header>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <CheckBox IsChecked="{Binding IsSelected}"/>
+                                    <CheckBox Style="{StaticResource CbNormal}" IsChecked="{Binding IsSelected}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <DataGridTextColumn Header="项目编号" Width="70" Binding="{Binding SerialNo}"/>
                         <DataGridTextColumn Header="工程名称" Width="150" Binding="{Binding Name}"/>
-                        <DataGridTextColumn Header="道路数量" Width="155" Binding="{Binding Address}"/>
-                        <DataGridTextColumn Header="管道数量" Width="85" Binding="{Binding EntrustingPart}"/>
-                        <DataGridTextColumn Header="检测里程" Width="85" Binding="{Binding DetectionPart}"/>
-                        <DataGridTextColumn Header="已判读公里" Width="85" Binding="{Binding Approver}"/>
-                        <DataGridTextColumn Header="已检测里程" Width="85" Binding="{Binding Verifier}"/>
-                        <DataGridTextColumn Header="开始时间" Width="100" Binding="{Binding Auditor}"/>
-                        <DataGridTextColumn Header="计划完成时间" Width="100" Binding="{Binding Checker}"/>
-                        <DataGridTextColumn Header="缺陷评估标准" Width="180" Binding="{Binding Author}"/>
-                        <DataGridTextColumn Header="项目状态" Width="100" Binding="{Binding Administrator}"/>
-                        <DataGridTextColumn Header="设备详情" Width="100" Binding="{Binding InnerOperator}"/>
-                        <DataGridTextColumn Header="进度" Width="240" Binding="{Binding OutterOperator}"/>
-                        <DataGridTextColumn Header="操作" Width="*"/>
+                        <DataGridTextColumn Header="道路数量" Width="155" Binding="{Binding Road}"/>
+                        <DataGridTextColumn Header="管道数量" Width="85" Binding="{Binding Pipe}"/>
+                        <DataGridTextColumn Header="检测里程" Width="85" Binding="{Binding CheckMile}"/>
+                        <DataGridTextColumn Header="已判读公里" Width="85" Binding="{Binding ReadedMile}"/>
+                        <DataGridTextColumn Header="已检测里程" Width="85" Binding="{Binding CheckedMile}"/>
+                        <DataGridTextColumn Header="开始时间" Width="100" Binding="{Binding BeginDate}"/>
+                        <DataGridTextColumn Header="计划完成时间" Width="100" Binding="{Binding PlanCompleteDate}"/>
+                        <DataGridTextColumn Header="缺陷评估标准" Width="180" Binding="{Binding EvaluationStandard}"/>
+                        <DataGridTextColumn Header="项目状态" Width="100" Binding="{Binding Status}"/>
+                        <DataGridTemplateColumn Header="设备详情" Width="100">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border>
+                                        <Button x:Name="btnInfo" Content="查看" Style="{StaticResource BtnText}"/>
+                                    </Border>
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGridCell}}, Path=IsSelected}" Value="True" >
+                                            <Setter TargetName="btnInfo" Property="Foreground" Value="White"/>
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="进度" Width="240" Binding="{Binding Progress}"/>
+                        <DataGridTemplateColumn Header="操作" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Button x:Name="btnEdit" Grid.Column="0" Content="编辑" Style="{StaticResource BtnText}" />
+                                        <Button x:Name="btnCheckTask" Grid.Column="1" Content="检测任务" Style="{StaticResource BtnText}"/>
+                                    </Grid>
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGridCell}}, Path=IsSelected}" Value="True" >
+                                            <Setter TargetName="btnEdit" Property="Foreground" Value="White"/>
+                                            <Setter TargetName="btnCheckTask" Property="Foreground" Value="White"/>
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
 
                 </DataGrid>
-                <Border Grid.Row="1" Height="85" BorderBrush="{StaticResource Bd_Split}" BorderThickness="1,0,1,1">
-                    <local:Paging  DataContext="{Binding PagingVM}"/>
+                <Border Grid.Row="1" Height="85" BorderBrush="{StaticResource Bd_Split}" BorderThickness="1,0,1,1" Background="{StaticResource Bg_Paging}">
+                    <local:Paging  DataContext="{Binding PagingStatisticsVM}"/>
                 </Border>
             </Grid>
         </Grid>
