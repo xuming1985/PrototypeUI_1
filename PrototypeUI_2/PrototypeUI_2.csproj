@@ -72,21 +72,41 @@
     <Compile Include="Converter\BoolToVisibilityConverter.cs" />
     <Compile Include="Core\MockService.cs" />
     <Compile Include="Core\Utils.cs" />
+    <Compile Include="Model\DetectionPartModel.cs" />
+    <Compile Include="Model\PopMessageModel.cs" />
     <Compile Include="Model\ProjectStatisticsModel.cs" />
     <Compile Include="Model\ProjectModel.cs" />
     <Compile Include="Model\SearchResult.cs" />
+    <Compile Include="ViewModel\ComponentViewModel.cs" />
+    <Compile Include="ViewModel\DetectionPartViewModel.cs" />
+    <Compile Include="ViewModel\DeviceInfoViewModel.cs" />
+    <Compile Include="ViewModel\EntrustingPartViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\InformationManageViewModel.cs" />
     <Compile Include="ViewModel\PagingViewModel.cs" />
+    <Compile Include="ViewModel\PopViewModel.cs" />
+    <Compile Include="ViewModel\ProjectAddViewModel.cs" />
     <Compile Include="ViewModel\SystemManageViewModel.cs" />
     <Compile Include="ViewModel\ReportFormsViewModel.cs" />
     <Compile Include="ViewModel\ProjectManageViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\DetectionPartView.xaml.cs">
+      <DependentUpon>DetectionPartView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DeviceInfoView.xaml.cs">
+      <DependentUpon>DeviceInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EntrustingPartView.xaml.cs">
+      <DependentUpon>EntrustingPartView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\InformationManageView.xaml.cs">
       <DependentUpon>InformationManageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Paging.xaml.cs">
       <DependentUpon>Paging.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProjectAddView.xaml.cs">
+      <DependentUpon>ProjectAddView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ProjectManageView.xaml.cs">
       <DependentUpon>ProjectManageView.xaml</DependentUpon>
@@ -133,15 +153,39 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Styles\DatePicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\ListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\Text.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\DetectionPartView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DeviceInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EntrustingPartView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\InformationManageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Paging.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProjectAddView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -191,6 +235,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\header_person.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\pipe1001.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\profile\1.jpg">

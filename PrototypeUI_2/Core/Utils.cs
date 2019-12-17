@@ -14,9 +14,9 @@ namespace PrototypeUI_2.Core
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static Dictionary<string, ViewModelBase> GetPartViewModels()
+        public static Dictionary<string, ComponentViewModel> GetPartViewModels()
         {
-            var viewModels = new Dictionary<string, ViewModelBase>();
+            var viewModels = new Dictionary<string, ComponentViewModel>();
             viewModels.Add("ProjectManage", new ProjectManageViewModel());
             viewModels.Add("ReportForms", new ReportFormsViewModel());
             viewModels.Add("InformationManage", new InformationManageViewModel());

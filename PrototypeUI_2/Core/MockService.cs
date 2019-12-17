@@ -11,6 +11,7 @@ namespace PrototypeUI_2.Core
     {
         private static List<ProjectModel> _projects;
         private static List<ProjectStatisticsModel> _projectStatistics;
+        private static List<DetectionPartModel> _detectionParts;
         private static List<string> _names;
         private static List<string> _status;
         private static List<string> _entrustingParts;
@@ -22,6 +23,7 @@ namespace PrototypeUI_2.Core
             _entrustingParts = new List<string>() { "中国-一建", "中国-二建", "中国-三建", "中国-四建", "中国-六五建", "中国-六建" };
             InitProjectModel();
             InitProjectStatisticsModel();
+            InitDetectionPartModel();
         }
 
         private static void InitProjectModel()
@@ -72,6 +74,24 @@ namespace PrototypeUI_2.Core
             }
         }
 
+        private static void InitDetectionPartModel()
+        {
+            Random r = new Random();
+            _detectionParts = new List<DetectionPartModel>();
+            for (int i = 1; i <= 49; i++)
+            {
+                var model = new DetectionPartModel();
+                model.Index = i;
+                model.Name = "大连*******有限公司";
+                model.Address = "大连高新园区-黄浦路110号";
+                model.Contacts = _names[r.Next(0, _names.Count)];
+                model.ContactPhone = "0411-88886666";
+                model.Email = "123456@qq.com";
+                model.Logo = "";
+                _detectionParts.Add(model);
+            }
+        }
+
         public static PagedSearchResult<ProjectModel> GetProjects(string entrustingPart, DateTime? dateTimeStart, string nameKey, int page, int count)
         {
             var projects = _projects.Where(o => !string.IsNullOrWhiteSpace(o.Name));
@@ -95,6 +115,14 @@ namespace PrototypeUI_2.Core
             var result = new PagedSearchResult<ProjectStatisticsModel>();
             result.Total = _projectStatistics.Count();
             result.Data = _projectStatistics.Skip((page - 1) * count).Take(count).ToList();
+            return result;
+        }
+
+        public static PagedSearchResult<DetectionPartModel> GetEntrustingParts(int page, int count)
+        {
+            var result = new PagedSearchResult<DetectionPartModel>();
+            result.Total = _detectionParts.Count();
+            result.Data = _detectionParts.Skip((page - 1) * count).Take(count).ToList();
             return result;
         }
 

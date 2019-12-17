@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+using System;
 
 namespace PrototypeUI_2.Model
 {
@@ -17,5 +19,20 @@ namespace PrototypeUI_2.Model
         public string EvaluationStandard { get; set; }
         public string Status { get; set; }
         public int Progress { get; set; }
+
+        public RelayCommand<string> PopViewCommand { get; set; }
+
+        public ProjectStatisticsModel()
+        {
+            PopViewCommand = new RelayCommand<string>(PopView);
+        }
+
+        private void PopView(string category)
+        {
+            PopMessageModel message = new PopMessageModel();
+            message.Category = category;
+            message.Data = this;
+            Messenger.Default.Send(message, "Pop");
+        }
     }
 }

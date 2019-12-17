@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace PrototypeUI_2.ViewModel
 {
-    public class InformationManageViewModel : ViewModelBase
+    public class InformationManageViewModel : ComponentViewModel
     {
-
-
         public InformationManageViewModel()
         {
 

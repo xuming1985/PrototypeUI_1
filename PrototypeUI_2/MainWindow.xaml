@@ -82,5 +82,25 @@
             </ContentControl>
         </Grid>
         <Grid Grid.Row="2" Height="40" Background="{StaticResource Bg_Footer}"/>
+
+        <Grid Grid.RowSpan="3" Visibility="{Binding PopVisibility}">
+            <Border Background="Black" Opacity="0.5"/>
+            <ContentControl Content="{Binding CurrentPopVm}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <ContentControl.Resources>
+                    <DataTemplate  DataType="{x:Type vm:ProjectAddViewModel}">
+                        <v:ProjectAddView/>
+                    </DataTemplate>
+                    <DataTemplate  DataType="{x:Type vm:EntrustingPartViewModel}">
+                        <v:EntrustingPartView/>
+                    </DataTemplate>
+                    <DataTemplate  DataType="{x:Type vm:DetectionPartViewModel}">
+                        <v:DetectionPartView/>
+                    </DataTemplate>
+                    <DataTemplate  DataType="{x:Type vm:DeviceInfoViewModel}">
+                        <v:DeviceInfoView/>
+                    </DataTemplate>
+                </ContentControl.Resources>
+            </ContentControl>
+        </Grid>
     </Grid>
 </Window>

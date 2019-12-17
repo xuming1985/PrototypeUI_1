@@ -11,6 +11,7 @@
     
     <!--  背景色  -->
     <SolidColorBrush x:Key="Bg_Content" Color="#EFF2F4"/>
+    <SolidColorBrush x:Key="Bg_Warning" Color="#F23A3A"/>
     <SolidColorBrush x:Key="Bg_Header" Color="#0099D9"/>
     <SolidColorBrush x:Key="Bg_Footer" Color="#242831"/>
     <SolidColorBrush x:Key="Bg_Focus_Blue" Color="#0090DA"/>

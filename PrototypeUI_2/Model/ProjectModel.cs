@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+using System;
 
 namespace PrototypeUI_2.Model
 {
@@ -31,5 +28,20 @@ namespace PrototypeUI_2.Model
         public string OutterOperator { get; set; }
 
         public DateTime CreateTime { get; set; }
+
+        public RelayCommand<string> PopViewCommand { get; set; }
+
+        public ProjectModel()
+        {
+            PopViewCommand = new RelayCommand<string>(PopView);
+        }
+
+        private void PopView(string category)
+        {
+            PopMessageModel message = new PopMessageModel();
+            message.Category = category;
+            message.Data = this;
+            Messenger.Default.Send(message, "Pop");
+        }
     }
 }

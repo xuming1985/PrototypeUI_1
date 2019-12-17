@@ -7,13 +7,8 @@ using System.Threading.Tasks;
 
 namespace PrototypeUI_2.ViewModel
 {
-    public class ReportFormsViewModel : ComponentViewModel
+    public class EntrustingPartViewModel : PopViewModel
     {
 
-
-        public ReportFormsViewModel()
-        {
-
-        }
     }
 }

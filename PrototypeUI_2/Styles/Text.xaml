@@ -10,7 +10,14 @@
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Foreground" Value="{StaticResource Fg_Text_Dark}"/>
     </Style>
-
+    <Style x:Key="txtBNormal" TargetType="TextBlock">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Margin" Value="20,0,0,0"/>
+        <Setter Property="Foreground" Value="{StaticResource Fg_Text_Dark}"/>
+    </Style>
     <Style x:Key="txtNormal" TargetType="TextBox">
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
@@ -18,6 +25,17 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Height" Value="35"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Bd_Border}"/>
+        <Setter Property="Foreground" Value="{StaticResource Fg_Text_Dark}"/>
+        <Setter Property="CaretBrush" Value="{StaticResource Fg_Text_Dark}"/>
+    </Style>
+    <Style x:Key="txtInput" TargetType="TextBox">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Height" Value="30"/>
         <Setter Property="BorderBrush" Value="{StaticResource Bd_Border}"/>
         <Setter Property="Foreground" Value="{StaticResource Fg_Text_Dark}"/>
         <Setter Property="CaretBrush" Value="{StaticResource Fg_Text_Dark}"/>

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:PrototypeUI_2.View"
+             xmlns:v="clr-namespace:PrototypeUI_2.View"
              xmlns:converter="clr-namespace:PrototypeUI_2.Converter"
              mc:Ignorable="d"  Background="{StaticResource Bg_Content}"
              d:DesignHeight="800" d:DesignWidth="1920">
@@ -32,24 +32,13 @@
                 <ComboBox Margin="110,0,0,0" Style="{StaticResource CboNormal}" HorizontalAlignment="Left" Width="185" ItemsSource="{Binding EntrustingParts}"/>
 
                 <Label Content="创建日期" Margin="330,0,0,0" Style="{StaticResource LblProperty}"/>
-                <DatePicker Margin="410,0,0,0">
-                    <DatePicker.Style>
-                        <Style TargetType="DatePicker">
-                            <Setter Property="VerticalAlignment" Value="Center"/>
-                            <Setter Property="VerticalContentAlignment" Value="Center"/>
-                            <Setter Property="HorizontalAlignment" Value="Left"/>
-                            <Setter Property="BorderBrush" Value="{StaticResource Bd_Border}"/>
-                            <Setter Property="Width" Value="185"/>
-                            <Setter Property="Height" Value="35"/>
-                            <Setter Property="Padding" Value="10,0,0,0"/>
-                        </Style>
-                    </DatePicker.Style>
-                </DatePicker>
+                <DatePicker Style="{StaticResource DPNormal}" Margin="410,0,0,0" Width="185" Height="35"/>
+
                 <Label Content="工程名称" Margin="630,0,0,0" Style="{StaticResource LblProperty}"/>
                 <TextBox  Margin="710,0,0,0" Style="{StaticResource txtNormal}" HorizontalAlignment="Left" Width="185" Text="{Binding NameKey}"/>
                 <Button Style="{StaticResource BtnNormal}" Margin="950,0,0,0" Width="80" Content="查询"/>
-                <Button Style="{StaticResource BtnNormal}" Margin="0,0,140,0" Width="105" HorizontalAlignment="Right" Content="新增项目"/>
-                <Button Style="{StaticResource BtnNormal}"  Margin="0,0,25,0" Width="105" HorizontalAlignment="Right" Content="删除项目"/>
+                <Button Style="{StaticResource BtnNormal}" Margin="0,0,140,0" Width="105" HorizontalAlignment="Right" Content="新增项目" Command="{Binding AddCommand}"/>
+                <Button Style="{StaticResource BtnNormal}"  Margin="0,0,25,0" Width="105" HorizontalAlignment="Right" Content="删除项目"  Command="{Binding DeleteCommand}"/>
             </Grid>
         </Border>
 
@@ -78,7 +67,7 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Border >
-                                        <Button x:Name="btnEntrustingPart" Content="{Binding EntrustingPart}" Style="{StaticResource BtnLink}"/>
+                                        <Button x:Name="btnEntrustingPart" Content="{Binding EntrustingPart}" Style="{StaticResource BtnLink}" Command="{Binding PopViewCommand}" CommandParameter="1"/>
                                     </Border>
                                     <DataTemplate.Triggers>
                                         <MultiDataTrigger>
@@ -104,7 +93,7 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Border>
-                                        <Button x:Name="btnDetectionPart" Content="{Binding DetectionPart}" Style="{StaticResource BtnLink}"/>
+                                        <Button x:Name="btnDetectionPart" Content="{Binding DetectionPart}" Style="{StaticResource BtnLink}" Command="{Binding PopViewCommand}" CommandParameter="2"/>
                                     </Border>
                                     <DataTemplate.Triggers>
                                         <MultiDataTrigger>
@@ -141,8 +130,8 @@
                                             <ColumnDefinition/>
                                             <ColumnDefinition/>
                                         </Grid.ColumnDefinitions>
-                                        <Button x:Name="btnEdit" Grid.Column="0" Content="编辑" Style="{StaticResource BtnText}" />
-                                        <Button x:Name="btnCheckTask" Grid.Column="1" Content="检测任务" Style="{StaticResource BtnText}"/>
+                                        <Button x:Name="btnEdit" Grid.Column="0" Content="编辑" Style="{StaticResource BtnText}"  Command="{Binding PopViewCommand}" CommandParameter="3"/>
+                                        <Button x:Name="btnCheckTask" Grid.Column="1" Content="检测任务" Style="{StaticResource BtnText}" Command="{Binding PopViewCommand}" CommandParameter="4"/>
                                     </Grid>
                                     <DataTemplate.Triggers>
                                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGridCell}}, Path=IsSelected}" Value="True" >
@@ -156,7 +145,7 @@
                     </DataGrid.Columns>
                 </DataGrid>
                 <Border Grid.Row="1" Height="85" BorderBrush="{StaticResource Bd_Split}" BorderThickness="1,0,1,1" Background="{StaticResource Bg_Paging}">
-                    <local:Paging  DataContext="{Binding PagingVM}"/>
+                    <v:Paging  DataContext="{Binding PagingVM}"/>
                 </Border>
             </Grid>
             <Grid Visibility="{Binding ElementName=rbStatistics, Path=IsChecked, Converter={StaticResource BoolToVisibility}, ConverterParameter=true}">
@@ -191,7 +180,7 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Border>
-                                        <Button x:Name="btnInfo" Content="查看" Style="{StaticResource BtnText}"/>
+                                        <Button x:Name="btnInfo" Content="查看" Style="{StaticResource BtnText}" Command="{Binding PopViewCommand}" CommandParameter="1"/>
                                     </Border>
                                     <DataTemplate.Triggers>
                                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGridCell}}, Path=IsSelected}" Value="True" >
@@ -210,8 +199,8 @@
                                             <ColumnDefinition/>
                                             <ColumnDefinition/>
                                         </Grid.ColumnDefinitions>
-                                        <Button x:Name="btnEdit" Grid.Column="0" Content="编辑" Style="{StaticResource BtnText}" />
-                                        <Button x:Name="btnCheckTask" Grid.Column="1" Content="检测任务" Style="{StaticResource BtnText}"/>
+                                        <Button x:Name="btnEdit" Grid.Column="0" Content="编辑" Style="{StaticResource BtnText}"  Command="{Binding PopViewCommand}" CommandParameter="3"/>
+                                        <Button x:Name="btnCheckTask" Grid.Column="1" Content="检测任务" Style="{StaticResource BtnText}" Command="{Binding PopViewCommand}" CommandParameter="4"/>
                                     </Grid>
                                     <DataTemplate.Triggers>
                                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGridCell}}, Path=IsSelected}" Value="True" >
@@ -226,9 +215,10 @@
 
                 </DataGrid>
                 <Border Grid.Row="1" Height="85" BorderBrush="{StaticResource Bd_Split}" BorderThickness="1,0,1,1" Background="{StaticResource Bg_Paging}">
-                    <local:Paging  DataContext="{Binding PagingStatisticsVM}"/>
+                    <v:Paging  DataContext="{Binding PagingStatisticsVM}"/>
                 </Border>
             </Grid>
         </Grid>
     </Grid>
+
 </UserControl>

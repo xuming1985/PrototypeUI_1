@@ -1,16 +1,15 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using PrototypeUI_2.Core;
 using PrototypeUI_2.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PrototypeUI_2.ViewModel
 {
-    public class ProjectManageViewModel: ViewModelBase
+    public class ProjectManageViewModel : ComponentViewModel
     {
         private string _entrustingPart;
         private string _nameKey;
@@ -81,7 +80,10 @@ namespace PrototypeUI_2.ViewModel
         public List<string> EntrustingParts { get; set; }
         public ObservableCollection<ProjectModel> Projects { get; set; }
         public ObservableCollection<ProjectStatisticsModel> Statistics { get; set; }
-        
+
+        public RelayCommand<string> AddCommand { get; set; }
+        public RelayCommand<string> DeleteCommand { get; set; }
+
         public ProjectManageViewModel()
         {
             Projects = new ObservableCollection<ProjectModel>();
@@ -90,7 +92,7 @@ namespace PrototypeUI_2.ViewModel
             PagingStatisticsVM = new PagingViewModel();
             EntrustingParts = MockService.GetEntrustingParts();
 
-            var result = MockService.GetProjects(EntrustingPart, CreateTimeStart, NameKey, PagingVM.Page, PagingVM.PageCount) ;
+            var result = MockService.GetProjects(EntrustingPart, CreateTimeStart, NameKey, PagingVM.Page, PagingVM.PageCount);
             PagingVM.Init(result.Total);
             foreach (var item in result.Data)
             {
@@ -103,6 +105,22 @@ namespace PrototypeUI_2.ViewModel
             {
                 Statistics.Add(item);
             }
+
+            AddCommand = new RelayCommand<string>(AddExecute);
+            DeleteCommand = new RelayCommand<string>(DeleteExecute);
         }
+
+        private void AddExecute(string category)
+        {
+            PopMessageModel message = new PopMessageModel();
+            message.Category = "ProjectAdd";
+            message.Data = null;
+            Messenger.Default.Send(message, "Pop");
+        }
+        private void DeleteExecute(string message)
+        {
+
+        }
+        
     }
 }
