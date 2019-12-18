@@ -15,7 +15,7 @@
                 <ControlTemplate TargetType="{x:Type TreeViewItem}">
                     <Border BorderBrush="{StaticResource Bd_Border}" BorderThickness="{Binding OutterLine}">
                         <StackPanel>
-                            <Border x:Name="Bd" MinHeight="30" Background="{TemplateBinding Background}" Padding="{Binding Padding}">
+                            <Border x:Name="Bd" MinHeight="30" Background="{TemplateBinding Background}" Padding="{Binding Padding}" Margin="2" CornerRadius="0">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
@@ -59,10 +59,12 @@
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" Value="{StaticResource ItemMouseOverBackground}" />
                             <Setter Property="Foreground" Value="{StaticResource ItemMouseOverForeground}" />
+                            <Setter TargetName="Bd" Property="CornerRadius" Value="5" />
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="Background" Value="{StaticResource ItemSelectedBackground}" />
                             <Setter Property="Foreground" Value="{StaticResource ItemSelectedForeground}" />
+                            <Setter TargetName="Bd" Property="CornerRadius" Value="5" />
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>

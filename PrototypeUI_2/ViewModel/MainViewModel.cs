@@ -64,10 +64,12 @@ namespace PrototypeUI_2.ViewModel
             get { return _currentPartViewModel; }
             set
             {
+                _currentPartViewModel.Dispose();
                 if (_currentPartViewModel != value)
                 {
                     _currentPartViewModel = value;
                     RaisePropertyChanged("CurrentPartViewModel");
+                    _currentPartViewModel.Init();
                     if (_currentPartViewModel.Parent != null)
                     {
                         ReturnVisibility = Visibility.Visible;
@@ -141,7 +143,6 @@ namespace PrototypeUI_2.ViewModel
                     else if (model.Category == "4")
                     {
                         Navigate("CheckTask");
-                        CurrentPartViewModel.Init();
                     }
                 }
                 else if (model.Data is ProjectStatisticsModel)
@@ -158,7 +159,6 @@ namespace PrototypeUI_2.ViewModel
                     else if (model.Category == "4")
                     {
                         Navigate("CheckTask");
-                        CurrentPartViewModel.Init();
                     }
                 }
             }

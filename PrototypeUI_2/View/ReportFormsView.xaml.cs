@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using CefSharp;
+using GalaSoft.MvvmLight.Messaging;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace PrototypeUI_2.View
 {
@@ -23,6 +12,21 @@ namespace PrototypeUI_2.View
         public ReportFormsView()
         {
             InitializeComponent();
+
+            BrowserSettings browserSettings = new BrowserSettings
+            {
+                FileAccessFromFileUrls = CefState.Enabled,
+                UniversalAccessFromFileUrls = CefState.Enabled,
+                ApplicationCache = CefState.Enabled,
+            };
+            chartbrowser.BrowserSettings = browserSettings;
+
+            Loaded += ReportFormsView_Loaded;
+        }
+
+        private void ReportFormsView_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Messenger.Default.Send(chartbrowser, "WebBrowser");
         }
     }
 }

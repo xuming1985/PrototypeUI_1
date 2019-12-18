@@ -3,10 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:PrototypeUI_2.View"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:v="clr-namespace:PrototypeUI_2.View"
+             xmlns:cef="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+             mc:Ignorable="d" Background="{StaticResource Bg_Content}"
+             d:DesignHeight="800" d:DesignWidth="1920">
     <Grid>
-        <Label>ReportFormsView</Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <RadioButton Grid.Column="0" Style="{StaticResource RadioButton_xmxx}" Content="统计分析1" Command="{Binding SwitchCommand}" CommandParameter="demo1" x:Name="rbUserLog"  IsChecked="True"/>
+            <Border Grid.Column="1" Background="{StaticResource Bd_Split}" Width="2" Margin="0,12,0,12" />
+            <RadioButton Grid.Column="2" Style="{StaticResource RadioButton_gxtj}" Content="统计分析2"  Command="{Binding SwitchCommand}" CommandParameter="demo2"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <cef:ChromiumWebBrowser x:Name="chartbrowser"/>
+        </Grid>
     </Grid>
 </UserControl>

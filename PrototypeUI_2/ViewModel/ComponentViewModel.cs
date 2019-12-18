@@ -10,5 +10,10 @@ namespace PrototypeUI_2.ViewModel
         {
 
         }
+
+        public virtual void Dispose()
+        {
+
+        }
     }
 }
