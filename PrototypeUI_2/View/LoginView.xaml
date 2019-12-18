@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="PrototypeUI_2.View.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PrototypeUI_2.View"
+             mc:Ignorable="d"  
+             d:DesignHeight="900" d:DesignWidth="1920">
+    <UserControl.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#6EA5FD" Offset="0"/>
+            <GradientStop Color="#1C9DD8" Offset="1"/>
+        </LinearGradientBrush>
+    </UserControl.Background>
+    <Grid>
+        <Border Width="1200" Height="700" Background="White">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="380"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border >
+                    <Border.Background>
+                        <ImageBrush ImageSource="../Images/login.png"/>
+                    </Border.Background>
+                </Border>
+                <Grid Grid.Column="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.Resources>
+                            <Style x:Key="BtnRound" TargetType="Button">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                <Setter Property="Background" Value="{StaticResource Bg_Button}"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                                <Setter Property="BorderThickness" Value="0,0,0,0"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontSize" Value="26"/>
+                                <Setter Property="Height" Value="80"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Padding="20,0,20,0" CornerRadius="40" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsPressed" Value="true">
+                                                    <Setter Property="Background" Value="{StaticResource Bd_Pressed}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsMouseOver" Value="true">
+                                                    <Setter Property="BorderBrush" Value="{StaticResource Bd_Pressed}"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+
+                        </Grid.Resources>
+                        <Label Style="{StaticResource LblProperty}" Grid.Row="0" Content="用户登录" HorizontalAlignment="Center" Margin="0,130,0,0" FontSize="36"/>
+                        <Label Style="{StaticResource LblProperty}" Grid.Row="1" Content="用户名" HorizontalAlignment="Left" Margin="180,10,0,0" FontSize="24" Foreground="#929292"/>
+                        <Label Style="{StaticResource LblProperty}" Grid.Row="3" Content="密   码" HorizontalAlignment="Left" Margin="180,10,0,0" FontSize="24" Foreground="#929292"/>
+                        <TextBox Style="{StaticResource txtNormal}" Grid.Row="2"  Height="50" Margin="180,10,180,0" FontSize="20" Text="asfas"/>
+                        <TextBox Style="{StaticResource txtNormal}" Grid.Row="4"  Height="50" Margin="180,10,180,0" FontSize="20" Text="asfas"/>
+                        <CheckBox Style="{StaticResource CbNormal}" Grid.Row="5" Height="40" Width="100" HorizontalAlignment="Left" Margin="180,10,180,0" Content="自动登录"/>
+                        <Button Style="{StaticResource BtnText}"  Grid.Row="5" Height="40" Width="100" HorizontalAlignment="Left" Margin="320,10,180,0" Content="忘记密码？"/>
+                        <Button Style="{StaticResource BtnRound}"  Grid.Row="6" Margin="180,50,180,0" Content="登录" VerticalAlignment="Top"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

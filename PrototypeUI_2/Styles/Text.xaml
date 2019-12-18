@@ -25,6 +25,7 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Height" Value="35"/>
+        <Setter Property="Padding" Value="10,0,0,0"/>
         <Setter Property="BorderBrush" Value="{StaticResource Bd_Border}"/>
         <Setter Property="Foreground" Value="{StaticResource Fg_Text_Dark}"/>
         <Setter Property="CaretBrush" Value="{StaticResource Fg_Text_Dark}"/>
@@ -36,6 +37,7 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Height" Value="30"/>
+        <Setter Property="Padding" Value="10,0,0,0"/>
         <Setter Property="BorderBrush" Value="{StaticResource Bd_Border}"/>
         <Setter Property="Foreground" Value="{StaticResource Fg_Text_Dark}"/>
         <Setter Property="CaretBrush" Value="{StaticResource Fg_Text_Dark}"/>
