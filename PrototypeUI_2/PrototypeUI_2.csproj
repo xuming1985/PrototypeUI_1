@@ -72,11 +72,15 @@
     <Compile Include="Converter\BoolToVisibilityConverter.cs" />
     <Compile Include="Core\MockService.cs" />
     <Compile Include="Core\Utils.cs" />
+    <Compile Include="Model\UserModel.cs" />
     <Compile Include="Model\DetectionPartModel.cs" />
+    <Compile Include="Model\ItemModel.cs" />
     <Compile Include="Model\PopMessageModel.cs" />
     <Compile Include="Model\ProjectStatisticsModel.cs" />
     <Compile Include="Model\ProjectModel.cs" />
     <Compile Include="Model\SearchResult.cs" />
+    <Compile Include="Model\TreeItemModel.cs" />
+    <Compile Include="ViewModel\CheckTaskViewModel.cs" />
     <Compile Include="ViewModel\ComponentViewModel.cs" />
     <Compile Include="ViewModel\DetectionPartViewModel.cs" />
     <Compile Include="ViewModel\DeviceInfoViewModel.cs" />
@@ -90,6 +94,9 @@
     <Compile Include="ViewModel\ReportFormsViewModel.cs" />
     <Compile Include="ViewModel\ProjectManageViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\CheckTaskView.xaml.cs">
+      <DependentUpon>CheckTaskView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\DetectionPartView.xaml.cs">
       <DependentUpon>DetectionPartView.xaml</DependentUpon>
     </Compile>
@@ -161,9 +168,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Styles\TreeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\Text.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\CheckTaskView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DetectionPartView.xaml">
       <SubType>Designer</SubType>

@@ -3,10 +3,96 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:PrototypeUI_2.View"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:v="clr-namespace:PrototypeUI_2.View"
+             xmlns:converter="clr-namespace:PrototypeUI_2.Converter"
+             mc:Ignorable="d" Background="{StaticResource Bg_Content}"
+             d:DesignHeight="800" d:DesignWidth="1920">
+    <UserControl.Resources>
+        <converter:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
+    </UserControl.Resources>
     <Grid>
-        <Label>InformationManageView</Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <RadioButton Grid.Column="0" Style="{StaticResource RadioButton_xmxx}" Content="用户日志" x:Name="rbUserLog"  IsChecked="True"/>
+            <Border Grid.Column="1" Background="{StaticResource Bd_Split}" Width="2" Margin="0,12,0,12" />
+            <RadioButton Grid.Column="2" Style="{StaticResource RadioButton_gxtj}" Content="系统日志"  x:Name="rbSystemLog"/>
+        </Grid>
+        <Border Grid.Row="1" Height="80" Margin="30,30,30,20" Background="White" BorderBrush="{StaticResource Bd_Split}" BorderThickness="1">
+            <Grid>
+                <Label Content="操作类型" Margin="30,0,0,0" Style="{StaticResource LblProperty}"/>
+                <ComboBox Margin="110,0,0,0" Style="{StaticResource CboNormal}" HorizontalAlignment="Left" Width="185" ItemsSource="{Binding EntrustingParts}"/>
+
+                <Label Content="时间范围" Margin="330,0,0,0" Style="{StaticResource LblProperty}"/>
+                <DatePicker Style="{StaticResource DPNormal}" Margin="410,0,0,0" Width="185" Height="35"/>
+                <Label Content="至" Margin="600,0,0,0" Style="{StaticResource LblProperty}"/>
+                <DatePicker Style="{StaticResource DPNormal}" Margin="630,0,0,0" Width="185" Height="35"/>
+
+                <Label Content="关键字" Margin="850,0,0,0" Style="{StaticResource LblProperty}"/>
+                <TextBox  Margin="930,0,0,0" Style="{StaticResource txtNormal}" HorizontalAlignment="Left" Width="185" Text="{Binding NameKey}"/>
+                <Button Style="{StaticResource BtnNormal}" Margin="1150,0,0,0" Width="80" Content="查询"/>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="2" Margin="30,0,30,20">
+            <Grid Visibility="{Binding ElementName=rbUserLog, Path=IsChecked, Converter={StaticResource BoolToVisibility}, ConverterParameter=true}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <DataGrid Grid.Row="0" ItemsSource="{Binding UserLogs}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="序号" Width="80" Binding="{Binding SerialNo}"/>
+                        <DataGridTextColumn Header="姓名" Width="200" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="操作类型" Width="300" Binding="{Binding Address}"/>
+                        <DataGridTextColumn Header="操作内容" Width="*" Binding="{Binding Approver}"/>
+                        <DataGridTextColumn Header="时间" Width="200" Binding="{Binding Verifier}"/>
+                        <DataGridTemplateColumn Header="操作" Width="300">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Button x:Name="btnHistory" Grid.Column="0" Content="历史记录" Style="{StaticResource BtnText}"  Command="{Binding PopViewCommand}" CommandParameter="1"/>
+                                    </Grid>
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGridCell}}, Path=IsSelected}" Value="True" >
+                                            <Setter TargetName="btnHistory" Property="Foreground" Value="White"/>
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Border Grid.Row="1" Height="85" BorderBrush="{StaticResource Bd_Split}" BorderThickness="1,0,1,1" Background="{StaticResource Bg_Paging}">
+                    <v:Paging  DataContext="{Binding PagingVM}"/>
+                </Border>
+            </Grid>
+            <Grid Visibility="{Binding ElementName=rbSystemLog, Path=IsChecked, Converter={StaticResource BoolToVisibility}, ConverterParameter=true}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <DataGrid Grid.Row="0" ItemsSource="{Binding SystemLogs}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="序号" Width="80" Binding="{Binding SerialNo}"/>
+                        <DataGridTextColumn Header="记录类型" Width="300" Binding="{Binding Address}"/>
+                        <DataGridTextColumn Header="记录内容" Width="*" Binding="{Binding Approver}"/>
+                        <DataGridTextColumn Header="时间" Width="200" Binding="{Binding Verifier}"/>
+                    </DataGrid.Columns>
+
+                </DataGrid>
+                <Border Grid.Row="1" Height="85" BorderBrush="{StaticResource Bd_Split}" BorderThickness="1,0,1,1" Background="{StaticResource Bg_Paging}">
+                    <v:Paging  DataContext="{Binding PagingStatisticsVM}"/>
+                </Border>
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>

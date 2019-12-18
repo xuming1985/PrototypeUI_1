@@ -12,8 +12,9 @@ namespace PrototypeUI_2.ViewModel
     public class MainViewModel : ViewModelBase
     {
         private Visibility _popVisibility = Visibility.Collapsed;
+        private Visibility _returnVisibility = Visibility.Collapsed;
         private ViewModelBase _currentPopVm;
-        private ViewModelBase _currentPartViewModel;
+        private ComponentViewModel _currentPartViewModel;
         private Dictionary<string, ComponentViewModel> _partViewModels;
 
         public Visibility PopVisibility
@@ -28,6 +29,20 @@ namespace PrototypeUI_2.ViewModel
                 }
             }
         }
+
+        public Visibility ReturnVisibility
+        {
+            get { return _returnVisibility; }
+            set
+            {
+                if (_returnVisibility != value)
+                {
+                    _returnVisibility = value;
+                    RaisePropertyChanged("ReturnVisibility");
+                }
+            }
+        }
+
         public ViewModelBase CurrentPopVm
         {
             get { return _currentPopVm; }
@@ -44,7 +59,7 @@ namespace PrototypeUI_2.ViewModel
         /// <summary>
         /// 当前功能页——VM
         /// </summary>
-        public ViewModelBase CurrentPartViewModel
+        public ComponentViewModel CurrentPartViewModel
         {
             get { return _currentPartViewModel; }
             set
@@ -53,17 +68,27 @@ namespace PrototypeUI_2.ViewModel
                 {
                     _currentPartViewModel = value;
                     RaisePropertyChanged("CurrentPartViewModel");
+                    if (_currentPartViewModel.Parent != null)
+                    {
+                        ReturnVisibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        ReturnVisibility = Visibility.Collapsed;
+                    }
                 }
             }
         }
 
         public RelayCommand<string> NavigateCommand { get; set; }
+        public RelayCommand<string> ReturnCommand { get; set; }
 
         public MainViewModel()
         {
             _partViewModels = Utils.GetPartViewModels();
             _currentPartViewModel = _partViewModels.FirstOrDefault().Value;
             NavigateCommand = new RelayCommand<string>(Navigate);
+            ReturnCommand = new RelayCommand<string>(ReturnNavigate);
 
             Messenger.Default.Register<PopMessageModel>(this, "Pop", ShowPop);
             Messenger.Default.Register<string>(this, "PopClose", PopClose);
@@ -77,6 +102,14 @@ namespace PrototypeUI_2.ViewModel
             }
         }
 
+        private void ReturnNavigate(string node)
+        {
+            if (CurrentPartViewModel != null)
+            {
+                CurrentPartViewModel = CurrentPartViewModel.Parent;
+            }
+        }
+
         private void ShowPop(PopMessageModel model)
         {
             if (model.Data == null)
@@ -84,6 +117,7 @@ namespace PrototypeUI_2.ViewModel
                 if(model.Category == "ProjectAdd")
                 {
                     CurrentPopVm = new ProjectAddViewModel();
+                    PopVisibility = Visibility.Visible;
                 }
             }
             else
@@ -93,10 +127,12 @@ namespace PrototypeUI_2.ViewModel
                     if (model.Category == "1")
                     {
                         CurrentPopVm = new EntrustingPartViewModel();
+                        PopVisibility = Visibility.Visible;
                     }
                     else if (model.Category == "2")
                     {
                         CurrentPopVm = new DetectionPartViewModel();
+                        PopVisibility = Visibility.Visible;
                     }
                     else if (model.Category == "3")
                     {
@@ -104,7 +140,8 @@ namespace PrototypeUI_2.ViewModel
                     }
                     else if (model.Category == "4")
                     {
-                        
+                        Navigate("CheckTask");
+                        CurrentPartViewModel.Init();
                     }
                 }
                 else if (model.Data is ProjectStatisticsModel)
@@ -112,6 +149,7 @@ namespace PrototypeUI_2.ViewModel
                     if (model.Category == "1")
                     {
                         CurrentPopVm = new DeviceInfoViewModel();
+                        PopVisibility = Visibility.Visible;
                     }
                     else if (model.Category == "3")
                     {
@@ -119,13 +157,11 @@ namespace PrototypeUI_2.ViewModel
                     }
                     else if (model.Category == "4")
                     {
-                       
+                        Navigate("CheckTask");
+                        CurrentPartViewModel.Init();
                     }
                 }
             }
-
-            PopVisibility = Visibility.Visible;
-
         }
 
         private void PopClose(string message)

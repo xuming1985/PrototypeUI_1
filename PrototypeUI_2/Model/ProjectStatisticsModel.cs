@@ -15,7 +15,23 @@ namespace PrototypeUI_2.Model
         public double ReadedMile { get; set; }
         public double CheckedMile { get; set; }
         public DateTime BeginDate { get; set; }
+
+        public string BeginDateStr
+        {
+            get
+            {
+                return BeginDate.ToString("yyyy-MM-dd");
+            }
+        }
         public DateTime PlanCompleteDate { get; set; }
+
+        public string PlanCompleteDateStr
+        {
+            get
+            {
+                return PlanCompleteDate.ToString("yyyy-MM-dd");
+            }
+        }
         public string EvaluationStandard { get; set; }
         public string Status { get; set; }
         public int Progress { get; set; }

@@ -172,8 +172,8 @@
                         <DataGridTextColumn Header="检测里程" Width="85" Binding="{Binding CheckMile}"/>
                         <DataGridTextColumn Header="已判读公里" Width="85" Binding="{Binding ReadedMile}"/>
                         <DataGridTextColumn Header="已检测里程" Width="85" Binding="{Binding CheckedMile}"/>
-                        <DataGridTextColumn Header="开始时间" Width="100" Binding="{Binding BeginDate}"/>
-                        <DataGridTextColumn Header="计划完成时间" Width="100" Binding="{Binding PlanCompleteDate}"/>
+                        <DataGridTextColumn Header="开始时间" Width="100" Binding="{Binding BeginDateStr}"/>
+                        <DataGridTextColumn Header="计划完成时间" Width="100" Binding="{Binding PlanCompleteDateStr}"/>
                         <DataGridTextColumn Header="缺陷评估标准" Width="180" Binding="{Binding EvaluationStandard}"/>
                         <DataGridTextColumn Header="项目状态" Width="100" Binding="{Binding Status}"/>
                         <DataGridTemplateColumn Header="设备详情" Width="100">

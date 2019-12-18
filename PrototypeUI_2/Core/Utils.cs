@@ -1,9 +1,5 @@
-﻿using GalaSoft.MvvmLight;
-using PrototypeUI_2.ViewModel;
-using System;
+﻿using PrototypeUI_2.ViewModel;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Reflection;
 
 namespace PrototypeUI_2.Core
 {
@@ -21,7 +17,7 @@ namespace PrototypeUI_2.Core
             viewModels.Add("ReportForms", new ReportFormsViewModel());
             viewModels.Add("InformationManage", new InformationManageViewModel());
             viewModels.Add("SystemManage", new SystemManageViewModel());
-
+            viewModels.Add("CheckTask", new CheckTaskViewModel() { Parent = viewModels["ProjectManage"] });
             return viewModels;
         }
     }

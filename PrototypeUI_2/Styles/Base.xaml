@@ -11,16 +11,17 @@
     
     <!--  背景色  -->
     <SolidColorBrush x:Key="Bg_Content" Color="#EFF2F4"/>
+    <SolidColorBrush x:Key="Bg_ContentInner" Color="#FBFBFC"/>
     <SolidColorBrush x:Key="Bg_Warning" Color="#F23A3A"/>
     <SolidColorBrush x:Key="Bg_Header" Color="#0099D9"/>
     <SolidColorBrush x:Key="Bg_Footer" Color="#242831"/>
     <SolidColorBrush x:Key="Bg_Focus_Blue" Color="#0090DA"/>
     <SolidColorBrush x:Key="Bg_Button" Color="#0099D9"/>
     <SolidColorBrush x:Key="Bg_Button_Disabled" Color="#E4E3E3"/>
-    <SolidColorBrush x:Key="Bg_Row_Odd" Color="#FBFBFC"/>
+    <SolidColorBrush x:Key="Bg_Row_Odd" Color="#FEFEFE"/>
     <SolidColorBrush x:Key="Bg_Row_Even" Color="#F5F5F5"/>
     <SolidColorBrush x:Key="Bg_Row_Selected" Color="#0099D9"/>
-    <SolidColorBrush x:Key="Bg_Paging" Color="#FBFBFC"/>
+    <SolidColorBrush x:Key="Bg_Paging" Color="#FEFEFE"/>
 
 
     <!--  前景色  -->
@@ -41,10 +42,10 @@
     <SolidColorBrush x:Key="Bd_Split" Color="#D8D8D9" />
     <SolidColorBrush x:Key="Bd_Border" Color="#D8D8D9" />
 
-    <SolidColorBrush x:Key="ItemSelectedBackground" Color="#404394" />
-    <SolidColorBrush x:Key="ItemSelectedForeground" Color="#5ABEFF" />
-    <SolidColorBrush x:Key="ItemMouseOverBackground" Color="#404394" />
-    <SolidColorBrush x:Key="ItemMouseOverForeground" Color="DarkOrange" />
+    <SolidColorBrush x:Key="ItemSelectedBackground" Color="#0099D9" />
+    <SolidColorBrush x:Key="ItemSelectedForeground" Color="White" />
+    <SolidColorBrush x:Key="ItemMouseOverBackground" Color="#F0F0F0" />
+    <SolidColorBrush x:Key="ItemMouseOverForeground" Color="#0099D9" />
 
     <!--ComBoBox项选中背景色-->
     <SolidColorBrush x:Key="ComboBoxSelectdBackground" Color="#0099D9"/>

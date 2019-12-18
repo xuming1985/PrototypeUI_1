@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PrototypeUI_2.Core
 {
@@ -12,6 +10,8 @@ namespace PrototypeUI_2.Core
         private static List<ProjectModel> _projects;
         private static List<ProjectStatisticsModel> _projectStatistics;
         private static List<DetectionPartModel> _detectionParts;
+        private static List<TreeItemModel> _departments;
+        private static List<UserModel> _users;
         private static List<string> _names;
         private static List<string> _status;
         private static List<string> _entrustingParts;
@@ -24,6 +24,8 @@ namespace PrototypeUI_2.Core
             InitProjectModel();
             InitProjectStatisticsModel();
             InitDetectionPartModel();
+            InitDepartments();
+            InitUserModels();
         }
 
         private static void InitProjectModel()
@@ -92,6 +94,64 @@ namespace PrototypeUI_2.Core
             }
         }
 
+        private static void InitDepartments()
+        {
+            _departments = new List<TreeItemModel>();
+            _departments.Add(new TreeItemModel()
+            {
+                Id = 1,
+                Name = "开发部",
+                OutterLine = new System.Windows.Thickness(0, 0, 0, 1),
+                Padding = new System.Windows.Thickness(30, 10, 0, 10),
+                Children = new List<TreeItemModel>()
+                {
+                    new TreeItemModel(){ Id = 11, Name = "开发一部", Padding = new System.Windows.Thickness(60, 00, 0, 0)},
+                    new TreeItemModel(){ Id = 12, Name = "开发二部", Padding = new System.Windows.Thickness(60, 00, 0, 0)},
+                    new TreeItemModel(){ Id = 13, Name = "开发三部", Padding = new System.Windows.Thickness(60, 00, 0, 0)}
+                }
+            }); ;
+            _departments.Add(new TreeItemModel()
+            {
+                Id = 2,
+                Name = "销售部",
+                OutterLine = new System.Windows.Thickness(0, 0, 0, 1),
+                Padding = new System.Windows.Thickness(30, 10, 0, 10),
+                Children = new List<TreeItemModel>()
+                {
+                    new TreeItemModel(){ Id = 21, Name = "销售一部", Padding = new System.Windows.Thickness(60, 00, 0, 0)},
+                    new TreeItemModel(){ Id = 22, Name = "销售二部", Padding = new System.Windows.Thickness(60, 00, 0, 0)},
+                    new TreeItemModel(){ Id = 23, Name = "销售三部", Padding = new System.Windows.Thickness(60, 00, 0, 0)}
+                }
+            });
+            _departments.Add(new TreeItemModel()
+            {
+                Id = 3,
+                Name = "财务部部",
+                OutterLine = new System.Windows.Thickness(0, 0, 0, 1),
+                Padding = new System.Windows.Thickness(30, 10, 0, 10),
+            });
+        }
+
+        private static void InitUserModels()
+        {
+            Random r = new Random();
+            _users = new List<UserModel>();
+            for (int i = 1; i <= 49; i++)
+            {
+                var model = new UserModel();
+                model.Index = i;
+                model.Name = $"dl{i.ToString("000")}";
+                model.RealName = _names[r.Next(0, _names.Count)];
+                model.Phone = "0411-88886666";
+                model.RegisterTime = DateTime.Now.AddDays(-r.Next(1, 300)).ToString("yyyy-MM-dd");
+                model.Status = "有效";
+                model.Department = _departments[r.Next(0, _departments.Count)].Name;
+                model.Role = "操作员";
+                _users.Add(model);
+            }
+        }
+
+
         public static PagedSearchResult<ProjectModel> GetProjects(string entrustingPart, DateTime? dateTimeStart, string nameKey, int page, int count)
         {
             var projects = _projects.Where(o => !string.IsNullOrWhiteSpace(o.Name));
@@ -126,9 +186,21 @@ namespace PrototypeUI_2.Core
             return result;
         }
 
+        public static PagedSearchResult<UserModel> GetUsers(int page, int count)
+        {
+            var result = new PagedSearchResult<UserModel>();
+            result.Total = _users.Count();
+            result.Data = _users.Skip((page - 1) * count).Take(count).ToList();
+            return result;
+        }
+
         public static List<string> GetEntrustingParts()
         {
             return _entrustingParts;
+        }
+        public static List<TreeItemModel> GetDepartments()
+        {
+            return _departments;
         }
     }
 }

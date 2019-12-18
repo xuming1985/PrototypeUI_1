@@ -3,10 +3,134 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:PrototypeUI_2.View"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:v="clr-namespace:PrototypeUI_2.View"
+             xmlns:converter="clr-namespace:PrototypeUI_2.Converter"
+             mc:Ignorable="d" Background="{StaticResource Bg_Content}"
+             d:DesignHeight="800" d:DesignWidth="1920">
+    <UserControl.Resources>
+        <converter:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
+    </UserControl.Resources>
     <Grid>
-        <Label>SystemManageView</Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <RadioButton Grid.Column="0" Style="{StaticResource RadioButton_xmxx}" Content="用户管理" x:Name="rbUserLog"  IsChecked="True"/>
+            <Border Grid.Column="1" Background="{StaticResource Bd_Split}" Width="2" Margin="0,12,0,12" />
+            <RadioButton Grid.Column="2" Style="{StaticResource RadioButton_gxtj}" Content="角色权限" x:Name="rbRole"/>
+            <Border Grid.Column="3" Background="{StaticResource Bd_Split}" Width="2" Margin="0,12,0,12" />
+            <RadioButton Grid.Column="4" Style="{StaticResource RadioButton_gxtj}" Content="设备管理"  x:Name="rbDevice"/>
+            <Border Grid.Column="5" Background="{StaticResource Bd_Split}" Width="2" Margin="0,12,0,12" />
+            <RadioButton Grid.Column="6" Style="{StaticResource RadioButton_gxtj}" Content="客户管理"  x:Name="rbCustomer"/>
+            <Border Grid.Column="7" Background="{StaticResource Bd_Split}" Width="2" Margin="0,12,0,12" />
+            <RadioButton Grid.Column="8" Style="{StaticResource RadioButton_gxtj}" Content="文件管理"  x:Name="rbFile"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" Height="80" Margin="30,30,30,20" Background="White" BorderBrush="{StaticResource Bd_Split}" BorderThickness="1">
+                    <Grid>
+                        <Label Content="用户状态" Margin="30,0,0,0" Style="{StaticResource LblProperty}"/>
+                        <ComboBox Margin="110,0,0,0" Style="{StaticResource CboNormal}" HorizontalAlignment="Left" Width="185" ItemsSource="{Binding EntrustingParts}"/>
+                        
+                        <Label Content="关键字" Margin="350,0,0,0" Style="{StaticResource LblProperty}"/>
+                        <TextBox  Margin="420,0,0,0" Style="{StaticResource txtNormal}" HorizontalAlignment="Left" Width="185" Text="{Binding NameKey}"/>
+                        <Button Style="{StaticResource BtnNormal}" Margin="650,0,0,0" Width="80" Content="查询"/>
+                    </Grid>
+                </Border>
+                <Grid Grid.Row="1" Margin="30,0,30,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="360"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Border Background="White" BorderThickness="1" BorderBrush="{StaticResource Bd_Border}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid>
+                                <Border Background="{StaticResource Bg_Header}" Width="30" Height="20" HorizontalAlignment="Left" CornerRadius="0,10,10,0"/>
+                                <Label Style="{StaticResource LblProperty}" Margin="50,0,0,0" Content="部门管理" Foreground="{StaticResource Fg_Text_Blue}"/>
+                                <Button Style="{StaticResource BtnNormal}" HorizontalAlignment="Right" Margin="20,2" Height="30" Content="添加部门"/>
+                            </Grid>
+                            <Border Grid.Row="1" Background="{StaticResource Bd_Split}" Height="1" Margin="20,0"></Border>
+                            <TreeView Grid.Row="2" Margin="20,0,20,0" Style="{StaticResource TVNormal}" ItemsSource="{Binding Departments}" DisplayMemberPath="Name"/>
+                        </Grid>
+                    </Border>
+                    <Border Grid.Column="2" BorderThickness="1" BorderBrush="{StaticResource Bd_Border}" Background="{StaticResource Bg_ContentInner}">
+                        <Grid Margin="30,0,30,20">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="85"/>
+                            </Grid.RowDefinitions>
+                            <Grid>
+                                <Border Background="{StaticResource Bg_Header}" Width="30" Height="20" HorizontalAlignment="Left" Margin="-30,0,0,0" CornerRadius="0,10,10,0"/>
+                                <Label Style="{StaticResource LblProperty}" Margin="0,0,0,0" Content="用户管理" Foreground="{StaticResource Fg_Text_Blue}"/>
+                                <Button Style="{StaticResource BtnNormal}" HorizontalAlignment="Right" Margin="100,2" Height="30" Content="添加用户"/>
+                                <Button Style="{StaticResource BtnNormal}" HorizontalAlignment="Right" Margin="0,2" Height="30" Content="导出"/>
+                            </Grid>
+                            <DataGrid Grid.Row="1" ItemsSource="{Binding Users}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="序号" Width="80" Binding="{Binding Index}"/>
+                                    <DataGridTextColumn Header="用户名" Width="120" Binding="{Binding Name}"/>
+                                    <DataGridTextColumn Header="真实姓名" Width="120" Binding="{Binding RealName}"/>
+                                    <DataGridTextColumn Header="手机号" Width="120" Binding="{Binding Phone}"/>
+                                    <DataGridTextColumn Header="注册时间" Width="120" Binding="{Binding RegisterTime}"/>
+                                    <DataGridTextColumn Header="状态" Width="120" Binding="{Binding Status}"/>
+                                    <DataGridTextColumn Header="部门" Width="180" Binding="{Binding Department}"/>
+                                    <DataGridTextColumn Header="角色" Width="180" Binding="{Binding Role}"/>
+                                    <DataGridTemplateColumn Header="操作" Width="*">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition/>
+                                                        <ColumnDefinition/>
+                                                        <ColumnDefinition/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Button x:Name="btnEdit" Grid.Column="0" Content="编辑" Style="{StaticResource BtnText}"  Command="{Binding PopViewCommand}" CommandParameter="1"/>
+                                                    <Button x:Name="btnDelte" Grid.Column="1" Content="删除" Style="{StaticResource BtnText}"  Command="{Binding PopViewCommand}" CommandParameter="1"/>
+                                                    <Button x:Name="btnPassword" Grid.Column="2" Content="密码重置" Style="{StaticResource BtnText}"  Command="{Binding PopViewCommand}" CommandParameter="1"/>
+                                                </Grid>
+                                                <DataTemplate.Triggers>
+                                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGridCell}}, Path=IsSelected}" Value="True" >
+                                                        <Setter TargetName="btnEdit" Property="Foreground" Value="White"/>
+                                                        <Setter TargetName="btnDelte" Property="Foreground" Value="White"/>
+                                                        <Setter TargetName="btnPassword" Property="Foreground" Value="White"/>
+                                                    </DataTrigger>
+                                                </DataTemplate.Triggers>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <Border Grid.Row="2" BorderBrush="{StaticResource Bd_Split}" BorderThickness="1,0,1,1" Background="{StaticResource Bg_Paging}">
+                                <v:Paging  DataContext="{Binding UserPagingVM}"/>
+                            </Border>
+                        </Grid>
+                    </Border>
+                    
+                </Grid>
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>

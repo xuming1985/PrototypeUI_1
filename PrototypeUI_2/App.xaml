@@ -18,6 +18,7 @@
                 <ResourceDictionary Source="Styles/ListView.xaml"/>
                 <ResourceDictionary Source="Styles/RadioButton.xaml"/>
                 <ResourceDictionary Source="Styles/Text.xaml"/>
+                <ResourceDictionary Source="Styles/TreeView.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <viewmodels:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
         </ResourceDictionary>

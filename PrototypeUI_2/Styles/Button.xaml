@@ -198,7 +198,40 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
+    <Style x:Key="BtnReturn" TargetType="Button">
+        <Setter Property="Foreground" Value="{StaticResource Fg_Text_Light}" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border VerticalAlignment="Center" Padding="5" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid>
+                                <Polyline Stroke="{TemplateBinding Foreground}" StrokeThickness="1" StrokeLineJoin="Round" Points="20,5 8,15 20,25" />
+                            </Grid>
+                            <Label Grid.Column="1" FontSize="14" Margin="10,0,10,0" Foreground="{TemplateBinding Foreground}" Content="返回上一层"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="Foreground" Value="{StaticResource Fg_Text_MouseOver}"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource Fg_Text_MouseOver}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Foreground" Value="{StaticResource Fg_Text_MouseOver}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="BtnBorder" TargetType="Button">
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
