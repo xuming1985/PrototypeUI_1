@@ -40,8 +40,8 @@
 
             <Label x:Name="popTag" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,240,0"/>
 
-            <ToggleButton x:Name="tbPerson" Grid.Column="1" Style="{StaticResource TBPerson}" Content="luck001">
-            </ToggleButton>
+            <ToggleButton x:Name="tbPerson" Grid.Column="1" Style="{StaticResource TBPerson}" Content="luck001"/>
+
             <Popup IsOpen="{Binding ElementName=tbPerson, Path=IsChecked, Mode=TwoWay}" PlacementTarget="{Binding ElementName=popTag}"  Placement="Bottom" Focusable="False" AllowsTransparency="True" PopupAnimation="Slide" StaysOpen="False">
                 <Border x:Name="DropDownBorder"  Background="White" BorderThickness="1" BorderBrush="{StaticResource Bd_Split}" Height="160" Width="220" Padding="8" CornerRadius="0,0,8,8">
                     <Grid>
@@ -58,8 +58,8 @@
                         </Border>
                         <Label Content="luck001" VerticalAlignment="Center" Margin="60,0,0,0" Foreground="{StaticResource Fg_Text_Dark}"/>
                         <Border Grid.Row="1" Background="{StaticResource Bd_Split}" Height="1" Margin="5,0,5,0"/>
-                        <Button Grid.Row="2" Style="{StaticResource BtnPersonCenter}" Content="个人中心" />
-                        <Button Grid.Row="3" Style="{StaticResource BtnPersonExit}" Content="退出登录" />
+                        <Button Grid.Row="2" Style="{StaticResource BtnPersonCenter}" Content="个人中心"  Command="{Binding ExecuteCommand}" CommandParameter="person"/>
+                        <Button Grid.Row="3" Style="{StaticResource BtnPersonExit}" Content="退出登录" Command="{Binding ExecuteCommand}" CommandParameter="logout"/>
                     </Grid>
                 </Border>
             </Popup>
@@ -102,6 +102,10 @@
                     </DataTemplate>
                 </ContentControl.Resources>
             </ContentControl>
+        </Grid>
+
+        <Grid Grid.RowSpan="3" Visibility="{Binding LoginVisibility}">
+            <View:LoginView DataContext="{Binding LoginVM}"/>
         </Grid>
     </Grid>
 </Window>

@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:PrototypeUI_2.View"
-             mc:Ignorable="d"  
-             d:DesignHeight="900" d:DesignWidth="1920">
+             xmlns:core="clr-namespace:PrototypeUI_2.Core"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             mc:Ignorable="d"  d:DesignHeight="900" d:DesignWidth="1920">
     <UserControl.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#6EA5FD" Offset="0"/>
@@ -68,11 +68,15 @@
                         <Label Style="{StaticResource LblProperty}" Grid.Row="0" Content="用户登录" HorizontalAlignment="Center" Margin="0,130,0,0" FontSize="36"/>
                         <Label Style="{StaticResource LblProperty}" Grid.Row="1" Content="用户名" HorizontalAlignment="Left" Margin="180,10,0,0" FontSize="24" Foreground="#929292"/>
                         <Label Style="{StaticResource LblProperty}" Grid.Row="3" Content="密   码" HorizontalAlignment="Left" Margin="180,10,0,0" FontSize="24" Foreground="#929292"/>
-                        <TextBox Style="{StaticResource txtNormal}" Grid.Row="2"  Height="50" Margin="180,10,180,0" FontSize="20" Text="asfas"/>
-                        <TextBox Style="{StaticResource txtNormal}" Grid.Row="4"  Height="50" Margin="180,10,180,0" FontSize="20" Text="asfas"/>
-                        <CheckBox Style="{StaticResource CbNormal}" Grid.Row="5" Height="40" Width="100" HorizontalAlignment="Left" Margin="180,10,180,0" Content="自动登录"/>
-                        <Button Style="{StaticResource BtnText}"  Grid.Row="5" Height="40" Width="100" HorizontalAlignment="Left" Margin="320,10,180,0" Content="忘记密码？"/>
-                        <Button Style="{StaticResource BtnRound}"  Grid.Row="6" Margin="180,50,180,0" Content="登录" VerticalAlignment="Top"/>
+                        <TextBox Style="{StaticResource txtNormal}" Grid.Row="2"  Height="50" Margin="180,10,180,0" FontSize="20" Text="{Binding Account}" Foreground="#929292" />
+                        <PasswordBox Style="{StaticResource PasswordBoxNormal}" Grid.Row="4"  Height="50" Margin="180,10,180,0" FontSize="20" Password="111" Foreground="#929292" core:PasswordBoxHelper.Password="{Binding Path=Password,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                            <i:Interaction.Behaviors>
+                                <core:PasswordBoxBehavior />
+                            </i:Interaction.Behaviors>
+                        </PasswordBox>
+                        <CheckBox Style="{StaticResource CbNormal}" Grid.Row="5"  HorizontalAlignment="Left" Margin="180,10,180,0" Content="自动登录" Foreground="#929292" IsChecked="{Binding IsAutoLogin}"/>
+                        <Button Style="{StaticResource BtnText}"  Grid.Row="5"  Width="100" HorizontalAlignment="Left" Margin="320,10,180,0" Content="忘记密码？" Command="{Binding ExecuteCommand}" CommandParameter="forget"/>
+                        <Button Style="{StaticResource BtnRound}"  Grid.Row="6" Margin="180,50,180,0" Content="登录" VerticalAlignment="Top" Command="{Binding ExecuteCommand}" CommandParameter="login"/>
                     </Grid>
                 </Grid>
             </Grid>

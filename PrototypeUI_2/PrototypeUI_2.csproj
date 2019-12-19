@@ -75,6 +75,9 @@
     <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
       <HintPath>..\PrototypeUI_1\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.2.0.246, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\PrototypeUI_1\packages\SharpZipLib.1.2.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -100,6 +103,7 @@
     </ApplicationDefinition>
     <Compile Include="Converter\BoolToVisibilityConverter.cs" />
     <Compile Include="Core\MockService.cs" />
+    <Compile Include="Core\PasswordBoxHelper.cs" />
     <Compile Include="Core\Utils.cs" />
     <Compile Include="Model\UserModel.cs" />
     <Compile Include="Model\DetectionPartModel.cs" />
@@ -114,6 +118,7 @@
     <Compile Include="ViewModel\DetectionPartViewModel.cs" />
     <Compile Include="ViewModel\DeviceInfoViewModel.cs" />
     <Compile Include="ViewModel\EntrustingPartViewModel.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\InformationManageViewModel.cs" />
     <Compile Include="ViewModel\PagingViewModel.cs" />
@@ -137,6 +142,9 @@
     </Compile>
     <Compile Include="View\InformationManageView.xaml.cs">
       <DependentUpon>InformationManageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Paging.xaml.cs">
       <DependentUpon>Paging.xaml</DependentUpon>
@@ -222,6 +230,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\InformationManageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -354,6 +366,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\header_person.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\login.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\pipe1001.jpg">

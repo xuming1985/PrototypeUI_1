@@ -90,8 +90,15 @@ namespace PrototypeUI_2.ViewModel
             Statistics = new ObservableCollection<ProjectStatisticsModel>();
             PagingVM = new PagingViewModel();
             PagingStatisticsVM = new PagingViewModel();
-            EntrustingParts = MockService.GetEntrustingParts();
 
+            AddCommand = new RelayCommand<string>(AddExecute);
+            DeleteCommand = new RelayCommand<string>(DeleteExecute);
+        }
+
+        public override void Init()
+        {
+            base.Init();
+            EntrustingParts = MockService.GetEntrustingParts();
             var result = MockService.GetProjects(EntrustingPart, CreateTimeStart, NameKey, PagingVM.Page, PagingVM.PageCount);
             PagingVM.Init(result.Total);
             foreach (var item in result.Data)
@@ -105,9 +112,6 @@ namespace PrototypeUI_2.ViewModel
             {
                 Statistics.Add(item);
             }
-
-            AddCommand = new RelayCommand<string>(AddExecute);
-            DeleteCommand = new RelayCommand<string>(DeleteExecute);
         }
 
         private void AddExecute(string category)

@@ -1,19 +1,13 @@
-﻿using GalaSoft.MvvmLight;
-using PrototypeUI_2.Core;
+﻿using PrototypeUI_2.Core;
 using PrototypeUI_2.Model;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PrototypeUI_2.ViewModel
 {
     public class SystemManageViewModel : ComponentViewModel
     {
         private PagingViewModel _userPaging;
-
 
         public PagingViewModel UserPagingVM
         {
@@ -35,10 +29,15 @@ namespace PrototypeUI_2.ViewModel
         {
             UserPagingVM = new PagingViewModel() { PageCount = 10};
             Users = new ObservableCollection<UserModel>();
+        }
+
+        public override void Init()
+        {
+            base.Init();
 
             Departments = MockService.GetDepartments();
 
-            var resultUser= MockService.GetUsers(UserPagingVM.Page, UserPagingVM.PageCount);
+            var resultUser = MockService.GetUsers(UserPagingVM.Page, UserPagingVM.PageCount);
             UserPagingVM.Init(resultUser.Total);
             foreach (var item in resultUser.Data)
             {

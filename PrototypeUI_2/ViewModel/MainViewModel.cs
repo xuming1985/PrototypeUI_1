@@ -12,6 +12,7 @@ namespace PrototypeUI_2.ViewModel
     public class MainViewModel : ViewModelBase
     {
         private Visibility _popVisibility = Visibility.Collapsed;
+        private Visibility _loginVisibility = Visibility.Visible;
         private Visibility _returnVisibility = Visibility.Collapsed;
         private ViewModelBase _currentPopVm;
         private ComponentViewModel _currentPartViewModel;
@@ -29,7 +30,18 @@ namespace PrototypeUI_2.ViewModel
                 }
             }
         }
-
+        public Visibility LoginVisibility
+        {
+            get { return _loginVisibility; }
+            set
+            {
+                if (_loginVisibility != value)
+                {
+                    _loginVisibility = value;
+                    RaisePropertyChanged("LoginVisibility");
+                }
+            }
+        }
         public Visibility ReturnVisibility
         {
             get { return _returnVisibility; }
@@ -43,6 +55,7 @@ namespace PrototypeUI_2.ViewModel
             }
         }
 
+        public LoginViewModel LoginVM { get; set; }
         public ViewModelBase CurrentPopVm
         {
             get { return _currentPopVm; }
@@ -64,7 +77,11 @@ namespace PrototypeUI_2.ViewModel
             get { return _currentPartViewModel; }
             set
             {
-                _currentPartViewModel.Dispose();
+                if (_currentPartViewModel != null)
+                {
+                    _currentPartViewModel.Dispose();
+                }
+                
                 if (_currentPartViewModel != value)
                 {
                     _currentPartViewModel = value;
@@ -84,16 +101,30 @@ namespace PrototypeUI_2.ViewModel
 
         public RelayCommand<string> NavigateCommand { get; set; }
         public RelayCommand<string> ReturnCommand { get; set; }
+        public RelayCommand<string> ExecuteCommand { get; set; }
 
         public MainViewModel()
         {
-            _partViewModels = Utils.GetPartViewModels();
-            _currentPartViewModel = _partViewModels.FirstOrDefault().Value;
+            LoginVM = new LoginViewModel();
+            LoginVM.LoginSuccess += Init;
+           
             NavigateCommand = new RelayCommand<string>(Navigate);
             ReturnCommand = new RelayCommand<string>(ReturnNavigate);
+            ExecuteCommand = new RelayCommand<string>(Execute);
 
             Messenger.Default.Register<PopMessageModel>(this, "Pop", ShowPop);
             Messenger.Default.Register<string>(this, "PopClose", PopClose);
+        }
+
+        /// <summary>
+        /// 登录成功后初始化主页面
+        /// </summary>
+        private void Init()
+        {
+            LoginVisibility = Visibility.Collapsed;
+
+            _partViewModels = Utils.GetPartViewModels();
+            CurrentPartViewModel = _partViewModels.FirstOrDefault().Value;
         }
 
         private void Navigate(string node)
@@ -168,6 +199,18 @@ namespace PrototypeUI_2.ViewModel
         {
             PopVisibility = Visibility.Collapsed;
             CurrentPopVm = null;
+        }
+
+        private void Execute(string content)
+        {
+            if(content == "logout")
+            {
+                LoginVisibility = Visibility.Visible;
+            }
+            else if (content == "person")
+            {
+
+            }
         }
     }
 }
