@@ -238,8 +238,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Paging.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\ProjectAddView.xaml">
       <SubType>Designer</SubType>
