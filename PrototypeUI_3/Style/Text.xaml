@@ -1,0 +1,73 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Base.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <VisualBrush x:Key="FileHintText" TileMode="None" Opacity="0.5" Stretch="None" AlignmentX="Left">
+        <VisualBrush.Visual>
+            <TextBlock Text="未选中任何文件" Margin="10,0,0,0" Foreground="{StaticResource Fg_Text_Dark_Bright}"/>
+        </VisualBrush.Visual>
+    </VisualBrush>
+    
+    <Style x:Key="LblProperty" TargetType="Label">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="{StaticResource Fg_Text_Dark}"/>
+    </Style>
+    <Style x:Key="txtBNormal" TargetType="TextBlock">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Margin" Value="20,0,0,0"/>
+        <Setter Property="Foreground" Value="{StaticResource Fg_Text_Dark}"/>
+    </Style>
+    <Style x:Key="txtNormal" TargetType="TextBox">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="Padding" Value="10,0,0,0"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Bd_Border}"/>
+        <Setter Property="Foreground" Value="{StaticResource Fg_Text_Dark}"/>
+        <Setter Property="CaretBrush" Value="{StaticResource Fg_Text_Dark}"/>
+    </Style>
+    <Style x:Key="txtInput" TargetType="TextBox">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Padding" Value="10,0,0,0"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Bd_Border}"/>
+        <Setter Property="Foreground" Value="{StaticResource Fg_Text_Dark}"/>
+        <Setter Property="CaretBrush" Value="{StaticResource Fg_Text_Dark}"/>
+    </Style>
+    <Style x:Key="txtInputFile" TargetType="TextBox" BasedOn="{StaticResource txtInput}">
+        <Style.Triggers>
+            <Trigger Property="Text" Value="{x:Null}">
+                <Setter Property="Background" Value="{StaticResource FileHintText}"/>
+            </Trigger>
+            <Trigger Property="Text" Value="">
+                <Setter Property="Background" Value="{StaticResource FileHintText}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="PasswordBoxNormal" TargetType="PasswordBox">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="Padding" Value="10,0,0,0"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Bd_Border}"/>
+        <Setter Property="Foreground" Value="{StaticResource Fg_Text_Dark}"/>
+        <Setter Property="CaretBrush" Value="{StaticResource Fg_Text_Dark}"/>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,70 @@
+﻿<Window x:Class="PrototypeUI_3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PrototypeUI_3"
+        xmlns:v="clr-namespace:PrototypeUI_3.View"
+        xmlns:vm="clr-namespace:PrototypeUI_3.ViewModel"
+        mc:Ignorable="d" WindowState="Normal" WindowStyle="None" WindowStartupLocation="CenterScreen"
+        DataContext="{Binding Source={StaticResource Locator}, Path = Main}"
+        Title="首页"  Height="900" Width="1500" AllowsTransparency="True">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Height="80" Background="{StaticResource Bg_Header}">
+            <Label Margin="40,0,0,0" Content="2D图纸尺寸计算软件" VerticalAlignment="Center" FontSize="24" Foreground="White"/>
+
+            <Grid HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <RadioButton Grid.Column="0" Content="项目管理" Command="{Binding NavigateCommand}" CommandParameter="ProjectManage" Style="{StaticResource RadioButton_xmgl}"  IsChecked="True"/>
+                <RadioButton Grid.Column="1" Content="库管理" Command="{Binding NavigateCommand}" CommandParameter="InventoryManage" Style="{StaticResource RadioButton_kgl}"/>
+            </Grid>
+            <Button Style="{StaticResource BtnReturn}" HorizontalAlignment="Right" Margin="0,0,280,0" Visibility="{Binding ReturnVisibility}" Command="{Binding ReturnCommand}"/>
+            <Grid HorizontalAlignment="Right" Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Command="{Binding ExecuteCommand}" CommandParameter="Min" Style="{StaticResource BtnMin}" />
+                <Button Grid.Column="1" Command="{Binding ExecuteCommand}" CommandParameter="MaxNormal" Style="{StaticResource BtnMax}"/>
+                <Button Grid.Column="2" Command="{Binding ExecuteCommand}" CommandParameter="Close" Style="{StaticResource BtnClose}"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1" Background="{StaticResource Bg_Content}">
+            <ContentControl Content="{Binding CurrentPartViewModel }">
+                <ContentControl.Resources>
+                    <DataTemplate  DataType="{x:Type vm:ProjectManageViewModel}">
+                        <v:ProjectManageView/>
+                    </DataTemplate>
+                    <DataTemplate  DataType="{x:Type vm:InventoryManageViewModel}">
+                        <v:InventoryManageView/>
+                    </DataTemplate>
+                    <DataTemplate  DataType="{x:Type vm:LayoutManageViewModel}">
+                        <v:LayoutManageView/>
+                    </DataTemplate>
+                </ContentControl.Resources>
+            </ContentControl>
+        </Grid>
+        <Grid Grid.Row="2" Height="40" Background="{StaticResource Bg_Footer}"/>
+
+        <Grid Grid.RowSpan="3" Visibility="{Binding PopupVisibility}">
+            <Border Background="Black" Opacity="0.5"/>
+            <ContentControl Content="{Binding CurrentPopupVm}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <ContentControl.Resources>
+                    <DataTemplate  DataType="{x:Type vm:ProjectEditViewModel}">
+                        <v:ProjectEditView/>
+                    </DataTemplate>
+                </ContentControl.Resources>
+            </ContentControl>
+        </Grid>
+
+    </Grid>
+</Window>

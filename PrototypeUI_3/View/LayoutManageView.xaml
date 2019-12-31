@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="PrototypeUI_3.View.LayoutManageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PrototypeUI_3.View"
+             mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="1800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Height="80" Margin="30,20,30,20" Background="White" BorderBrush="{StaticResource Bd_Split}" BorderThickness="1">
+            <Grid>
+                <Button Style="{StaticResource BtnNormal}" Margin="0,0,255,0" Width="115" HorizontalAlignment="Right" Content="添加布局图" Command="{Binding AddLayoutCommand}"/>
+                <Button Style="{StaticResource BtnNormal}" Margin="0,0,140,0" Width="105" HorizontalAlignment="Right" Content="布局推算" Command="{Binding AddCommand}"/>
+                <Button Style="{StaticResource BtnNormal}"  Margin="0,0,25,0" Width="105" HorizontalAlignment="Right" Content="批量删除"  Command="{Binding DeletePatchCommand}"/>
+            </Grid>
+        </Border>
+        <Grid  Grid.Row="1" Margin="30,0,30,30">
+            <DataGrid Grid.Row="0" ItemsSource="{Binding Projects}">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn  Width="1*" MinWidth="38">
+                        <DataGridTemplateColumn.Header>
+                            <CheckBox Style="{StaticResource CbNormal}"/>
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Style="{StaticResource CbNormal}" IsChecked="{Binding IsSelected}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="序号" Width="1*" MinWidth="40" Binding="{Binding Index}"/>
+                    <DataGridTextColumn Header="布局名称" Width="3*" MinWidth="120" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="布局文件名" Width="5*" MinWidth="150" Binding="{Binding Remark}"/>
+                    <DataGridTextColumn Header="压机块数量" Width="2*" MinWidth="100" Binding="{Binding HaveDrawing}"/>
+                    <DataGridTextColumn Header="冲压块数量" Width="2*" MinWidth="100" Binding="{Binding HaveDrawing}"/>
+
+                    <DataGridTemplateColumn Header="操作" Width="3*" MinWidth="300">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button x:Name="btnView" Grid.Column="0" Content="查看布局" Style="{StaticResource BtnText}"  Command="{Binding PopViewCommand}" CommandParameter="View"/>
+                                    <Button x:Name="btnDelete" Grid.Column="1" Content="删除" Style="{StaticResource BtnText}"  Command="{Binding PopViewCommand}" CommandParameter="Delete"/>
+                                    <Button x:Name="btnUp" Grid.Column="2" Content="上移" Style="{StaticResource BtnText}" Command="{Binding PopViewCommand}" CommandParameter="Up"/>
+                                    <Button x:Name="btnDown" Grid.Column="3" Content="下移" Style="{StaticResource BtnText}" Command="{Binding PopViewCommand}" CommandParameter="Down"/>
+                                </Grid>
+                                <DataTemplate.Triggers>
+                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGridCell}}, Path=IsSelected}" Value="True" >
+                                        <Setter TargetName="btnView" Property="Foreground" Value="White"/>
+                                        <Setter TargetName="btnDelete" Property="Foreground" Value="White"/>
+                                        <Setter TargetName="btnUp" Property="Foreground" Value="White"/>
+                                        <Setter TargetName="btnDown" Property="Foreground" Value="White"/>
+                                    </DataTrigger>
+                                </DataTemplate.Triggers>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+    </Grid>
+</UserControl>
