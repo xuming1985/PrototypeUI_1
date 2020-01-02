@@ -167,8 +167,9 @@ namespace PrototypeUI_2.ViewModel
             if (Page > 1)
             {
                 Page--;
+                PageChangedAction?.Invoke(Page);
             }
-            PageChangedAction?.Invoke(Page);
+
         }
 
         private void NextPage()
@@ -176,8 +177,9 @@ namespace PrototypeUI_2.ViewModel
             if (Page < TotalPage)
             {
                 Page++;
+                PageChangedAction?.Invoke(Page);
+
             }
-            PageChangedAction?.Invoke(Page);
         }
 
         private void PageNavigate(string page)
